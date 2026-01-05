@@ -1,0 +1,47 @@
+{
+  "project_name": "My Awesome Project",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_description": "A scalable Python project built with best practices",
+  "version": "0.1.0",
+  "author_name": "Your Name",
+  "author_email": "your.email@example.com",
+  "github_username": "{{ cookiecutter.author_name.lower().replace(' ', '-') }}",
+  "license": [
+    "MIT",
+    "Apache-2.0",
+    "GPL-3.0",
+    "BSD-3-Clause",
+    "Proprietary"
+  ],
+  "python_framework": [
+    "none",
+    "django",
+    "flask",
+    "fastapi",
+    "pydantic"
+  ],
+  "dependency_manager": [
+    "poetry",
+    "pip",
+    "pip-tools"
+  ],
+  "ci_cd": [
+    "github-actions",
+    "gitlab-ci",
+    "circleci",
+    "none"
+  ],
+  "testing_framework": [
+    "pytest",
+    "unittest"
+  ],
+  "documentation_tool": [
+    "mkdocs",
+    "sphinx",
+    "none"
+  ],
+  "use_docker": "y",
+  "use_pre_commit": "y",
+  "use_makefile": "y"
+}
+

@@ -1,0 +1,15 @@
+# Production dependencies
+{% if cookiecutter.python_framework == 'django' %}
+Django>=4.2
+djangorestframework>=3.14
+{% elif cookiecutter.python_framework == 'flask' %}
+Flask>=3.0
+flask-restful>=0.3.10
+{% elif cookiecutter.python_framework == 'fastapi' %}
+fastapi>=0.104
+uvicorn[standard]>=0.24
+pydantic>=2.5
+{% elif cookiecutter.python_framework == 'pydantic' %}
+pydantic>=2.5
+{% endif %}
+

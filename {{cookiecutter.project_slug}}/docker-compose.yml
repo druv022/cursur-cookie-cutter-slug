@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: {{ cookiecutter.project_slug }}
+    volumes:
+      - .:/app
+      - /app/.venv
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: python -m {{ cookiecutter.project_slug }}.main
+    {% if cookiecutter.python_framework == 'django' %}
+    depends_on:
+      - db
+    {% endif %}
+    restart: unless-stopped
+
+  {% if cookiecutter.python_framework == 'django' %}
+  db:
+    image: postgres:15-alpine
+    container_name: {{ cookiecutter.project_slug }}-db
+    environment:
+      - POSTGRES_DB={{ cookiecutter.project_slug }}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  {% endif %}
+
