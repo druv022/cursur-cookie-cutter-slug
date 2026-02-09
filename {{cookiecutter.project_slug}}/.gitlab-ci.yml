@@ -1,0 +1,94 @@
+# GitLab CI/CD for {{ cookiecutter.project_name }}
+
+default:
+  image: python:3.11
+
+stages:
+  - lint
+  - test
+  - security
+  - build
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cache/pip
+
+lint:
+  stage: lint
+  before_script:
+    - python -m pip install --upgrade pip
+    {% if cookiecutter.dependency_manager == 'poetry' %}
+    - pip install poetry
+    - poetry install
+    {% else %}
+    - pip install -r requirements-dev.txt
+    {% endif %}
+  script:
+    - ruff check .
+    - black --check .
+    - mypy src
+
+test:
+  stage: test
+  parallel:
+    matrix:
+      - PYTHON_VERSION: ["3.10", "3.11", "3.12"]
+  image: python:${PYTHON_VERSION}
+  before_script:
+    - python -m pip install --upgrade pip
+    {% if cookiecutter.dependency_manager == 'poetry' %}
+    - pip install poetry
+    - poetry install
+    {% else %}
+    - pip install -r requirements-dev.txt
+    {% endif %}
+  script:
+    {% if cookiecutter.testing_framework == 'pytest' %}
+    - {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=xml --cov-report=term
+    {% else %}
+    - {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage run -m unittest discover -v -s tests -p "test_*.py"
+    - {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage xml
+    - {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage report
+    {% endif %}
+  coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+  artifacts:
+    when: always
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+security:
+  stage: security
+  before_script:
+    - python -m pip install --upgrade pip
+    {% if cookiecutter.dependency_manager == 'poetry' %}
+    - pip install poetry bandit safety
+    - poetry install
+    - poetry export -f requirements.txt --without-hashes -o requirements-export.txt
+    {% else %}
+    - pip install -r requirements-dev.txt bandit safety
+    {% endif %}
+  script:
+    - {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}bandit -r . -ll
+    - |
+      {% if cookiecutter.dependency_manager == 'poetry' %}
+      safety check --file requirements-export.txt
+      {% else %}
+      safety check --file requirements.txt
+      {% endif %}
+
+build:
+  stage: build
+  needs: [lint, test]
+  before_script:
+    - python -m pip install --upgrade pip build
+  script:
+    - python -m build
+  artifacts:
+    paths:
+      - dist/

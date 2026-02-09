@@ -2,10 +2,14 @@
 -r requirements.txt
 
 # Testing
+{% if cookiecutter.testing_framework == 'pytest' %}
 pytest>=7.4
 pytest-cov>=4.1
 pytest-asyncio>=0.21
 pytest-mock>=3.12
+{% else %}
+coverage>=7.3
+{% endif %}
 
 # Code quality
 black>=23.11

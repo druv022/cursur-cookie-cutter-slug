@@ -7,19 +7,45 @@
 - Modern Python project structure
 - Type hints and static type checking with MyPy
 - Code formatting with Black and Ruff
-- Comprehensive testing with pytest
+- Comprehensive testing with {% if cookiecutter.testing_framework == 'pytest' %}pytest{% else %}unittest{% endif %}
 - Pre-commit hooks for code quality
+{% if cookiecutter.use_docker == 'y' %}
 - Docker support for containerized development
-- CI/CD pipelines with GitHub Actions
+{% endif %}
+{% if cookiecutter.ci_cd != 'none' %}
+- CI/CD pipelines ({% if cookiecutter.ci_cd == 'github-actions' %}GitHub Actions{% elif cookiecutter.ci_cd == 'gitlab-ci' %}GitLab CI{% elif cookiecutter.ci_cd == 'circleci' %}CircleCI{% endif %})
+{% endif %}
 - Cursor IDE optimized with `.cursorrules`
 
 ## Requirements
 
 - Python 3.10+
-- pip or poetry for dependency management
+- {% if cookiecutter.dependency_manager == 'poetry' %}Poetry for dependency management{% else %}pip or pip-tools for dependency management{% endif %}
 
 ## Installation
 
+{% if cookiecutter.dependency_manager == 'poetry' %}
+### Using Poetry (recommended for this project)
+
+```bash
+# Clone the repository
+git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.git
+cd {{ cookiecutter.project_slug }}
+
+# Install Poetry if not already installed
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Install dependencies (creates virtual environment and installs dev dependencies)
+poetry install
+
+# Activate the virtual environment
+poetry shell
+```
+
+### Alternative: using pip
+
+You can export a lockfile and use pip: `poetry export -f requirements.txt --output requirements.txt` then `pip install -r requirements.txt`.
+{% else %}
 ### Using pip
 
 ```bash
@@ -38,27 +64,21 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-### Using poetry
+### Alternative: using Poetry
 
-```bash
-# Install poetry if not already installed
-curl -sSL https://install.python-poetry.org | python3 -
-
-# Install dependencies
-poetry install
-
-# Activate virtual environment
-poetry shell
-```
+You can use Poetry by running `poetry init` and adding dependencies from `pyproject.toml`, or install Poetry and run `poetry add $(cat requirements.txt)`.
+{% endif %}
 
 ## Usage
 
 ```bash
 # Run the application
 python -m {{ cookiecutter.project_slug }}.main
+{% if cookiecutter.use_makefile == 'y' %}
 
 # Or using make
 make run
+{% endif %}
 ```
 
 ## Development
@@ -66,25 +86,35 @@ make run
 ### Setup
 
 1. Clone the repository
-2. Create a virtual environment
-3. Install development dependencies: `pip install -r requirements-dev.txt`
-4. Install pre-commit hooks: `pre-commit install`
-5. Copy `.env.example` to `.env` and configure
+2. {% if cookiecutter.dependency_manager == 'poetry' %}Install dependencies: `poetry install` and activate: `poetry shell`{% else %}Create a virtual environment and install development dependencies: `pip install -r requirements-dev.txt`{% endif %}
+3. Install pre-commit hooks: `pre-commit install`
+4. Copy `.env.example` to `.env` and configure
 
 ### Running Tests
 
 ```bash
 # Run all tests
-pytest
+{% if cookiecutter.testing_framework == 'pytest' %}
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run pytest{% else %}pytest{% endif %}
 
 # Run with coverage
-pytest --cov={{ cookiecutter.project_slug }} --cov-report=html
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run pytest --cov={{ cookiecutter.project_slug }} --cov-report=html{% else %}pytest --cov={{ cookiecutter.project_slug }} --cov-report=html{% endif %}
 
 # Run specific test file
 pytest tests/test_main.py
+{% else %}
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}python -m unittest discover -v -s tests -p "test_*.py"
+
+# Run with coverage
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage run -m unittest discover -s tests -p "test_*.py"
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage report
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage html
+{% endif %}
+{% if cookiecutter.use_makefile == 'y' %}
 
 # Or using make
 make test
+{% endif %}
 ```
 
 ### Code Quality
@@ -95,17 +125,20 @@ black .
 ruff check --fix .
 
 # Type checking
-mypy {{ cookiecutter.project_slug }}
+mypy src
+{% if cookiecutter.use_makefile == 'y' %}
 
 # Run all checks
 make lint
 make format
 make type-check
+{% endif %}
 
 # Or use pre-commit
 pre-commit run --all-files
 ```
 
+{% if cookiecutter.use_docker == 'y' %}
 ### Docker
 
 ```bash
@@ -114,11 +147,14 @@ docker build -t {{ cookiecutter.project_slug }}:latest .
 
 # Run container
 docker-compose up
+{% if cookiecutter.use_makefile == 'y' %}
 
 # Or using make
 make docker-build
 make docker-up
+{% endif %}
 ```
+{% endif %}
 
 ## Project Structure
 
@@ -132,24 +168,64 @@ make docker-up
 │   ├── __init__.py
 │   └── test_main.py
 ├── docs/
-│   ├── README.md
 │   ├── CONTRIBUTING.md
 │   └── ARCHITECTURE.md
-├── scripts/
+{% if cookiecutter.documentation_tool == 'mkdocs' %}
+│   └── index.md
+{% elif cookiecutter.documentation_tool == 'sphinx' %}
+│   ├── conf.py
+│   └── index.rst
+{% endif %}
+{% if cookiecutter.ci_cd == 'github-actions' %}
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml
 │       └── release.yml
-├── .cursorrules
+{% elif cookiecutter.ci_cd == 'gitlab-ci' %}
+├── .gitlab-ci.yml
+{% elif cookiecutter.ci_cd == 'circleci' %}
+├── .circleci/
+│   └── config.yml
+{% endif %}
 ├── .pre-commit-config.yaml
 ├── pyproject.toml
+{% if cookiecutter.dependency_manager != 'poetry' %}
 ├── requirements.txt
 ├── requirements-dev.txt
+{% endif %}
+{% if cookiecutter.use_docker == 'y' %}
 ├── Dockerfile
 ├── docker-compose.yml
+{% endif %}
+{% if cookiecutter.use_makefile == 'y' %}
 ├── Makefile
+{% endif %}
+{% if cookiecutter.documentation_tool == 'mkdocs' %}
+├── mkdocs.yml
+{% endif %}
+├── LICENSE
 └── README.md
 ```
+
+{% if cookiecutter.documentation_tool == 'mkdocs' %}
+## Documentation
+
+Build and serve the docs with MkDocs:
+
+```bash
+pip install mkdocs
+mkdocs serve
+```
+{% elif cookiecutter.documentation_tool == 'sphinx' %}
+## Documentation
+
+Build the docs with Sphinx:
+
+```bash
+pip install sphinx
+cd docs && sphinx-build -b html . _build
+```
+{% endif %}
 
 ## Configuration
 

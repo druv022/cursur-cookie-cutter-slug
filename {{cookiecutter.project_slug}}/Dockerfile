@@ -1,3 +1,5 @@
+# dockerfile-utils: ignore
+# Cookiecutter template: lines with Jinja2 template tags are not Docker instructions.
 # Use Python 3.11 slim image as base
 FROM python:3.11-slim as base
 
@@ -16,8 +18,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
+# dockerfile-utils: ignore
+{% if cookiecutter.dependency_manager == 'poetry' %}
+COPY pyproject.toml ./
+RUN pip install --no-cache-dir poetry \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-dev --no-root --no-interaction
+# dockerfile-utils: ignore
+{% else %}
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+# dockerfile-utils: ignore
+{% endif %}
 
 # Copy application code
 COPY . .

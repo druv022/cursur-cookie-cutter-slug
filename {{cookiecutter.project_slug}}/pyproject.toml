@@ -1,3 +1,48 @@
+{% if cookiecutter.dependency_manager == 'poetry' %}
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_description }}"
+readme = "README.md"
+license = "{{ cookiecutter.license }}"
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
+packages = [{include = "{{ cookiecutter.project_slug }}", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+{% if cookiecutter.python_framework == 'django' %}
+django = ">=4.2"
+djangorestframework = ">=3.14"
+{% elif cookiecutter.python_framework == 'flask' %}
+flask = ">=3.0"
+flask-restful = ">=0.3.10"
+{% elif cookiecutter.python_framework == 'fastapi' %}
+fastapi = ">=0.104"
+uvicorn = {extras = ["standard"], version = ">=0.24"}
+pydantic = ">=2.5"
+{% elif cookiecutter.python_framework == 'pydantic' %}
+pydantic = ">=2.5"
+{% endif %}
+
+[tool.poetry.group.dev.dependencies]
+{% if cookiecutter.testing_framework == 'pytest' %}
+pytest = ">=7.4"
+pytest-cov = ">=4.1"
+pytest-asyncio = ">=0.21"
+pytest-mock = ">=3.12"
+{% else %}
+coverage = ">=7.3"
+{% endif %}
+black = ">=23.11"
+ruff = ">=0.1.6"
+mypy = ">=1.7"
+pre-commit = ">=3.5"
+ipython = ">=8.17"
+{% else %}
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
@@ -40,10 +85,14 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    {% if cookiecutter.testing_framework == 'pytest' %}
     "pytest>=7.4",
     "pytest-cov>=4.1",
     "pytest-asyncio>=0.21",
     "pytest-mock>=3.12",
+    {% else %}
+    "coverage>=7.3",
+    {% endif %}
     "black>=23.11",
     "ruff>=0.1.6",
     "mypy>=1.7",
@@ -59,6 +108,7 @@ Issues = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.
 
 [tool.setuptools.packages.find]
 where = ["src"]
+{% endif %}
 
 [tool.black]
 line-length = 88
@@ -119,6 +169,7 @@ strict_equality = true
 module = "tests.*"
 disallow_untyped_defs = false
 
+{% if cookiecutter.testing_framework == 'pytest' %}
 [tool.pytest.ini_options]
 minversion = "7.0"
 testpaths = ["tests"]
@@ -139,6 +190,7 @@ markers = [
     "integration: marks tests as integration tests",
     "unit: marks tests as unit tests",
 ]
+{% endif %}
 
 [tool.coverage.run]
 source = ["{{ cookiecutter.project_slug }}"]

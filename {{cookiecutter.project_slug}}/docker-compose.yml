@@ -1,3 +1,5 @@
+# yamllint disable-file
+# Cookiecutter template: lines with Jinja2 template tags are not plain YAML.
 version: '3.8'
 
 services:

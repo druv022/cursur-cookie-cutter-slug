@@ -1,0 +1,25 @@
+# MkDocs configuration for {{ cookiecutter.project_name }}
+# Only present when documentation_tool is 'mkdocs'
+
+site_name: {{ cookiecutter.project_name }}
+site_description: {{ cookiecutter.project_description }}
+site_author: {{ cookiecutter.author_name }}
+
+repo_name: {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+repo_url: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+edit_uri: edit/main/docs/
+
+theme:
+  name: readthedocs
+
+nav:
+  - Home: index.md
+  - Architecture: ARCHITECTURE.md
+  - Contributing: CONTRIBUTING.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight

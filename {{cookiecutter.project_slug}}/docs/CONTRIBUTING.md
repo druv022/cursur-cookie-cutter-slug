@@ -15,6 +15,18 @@ By participating in this project, you agree to maintain a respectful and inclusi
 
 ## Development Setup
 
+{% if cookiecutter.dependency_manager == 'poetry' %}
+```bash
+# Install dependencies (creates virtual environment)
+poetry install
+
+# Activate the environment
+poetry shell
+
+# Install pre-commit hooks
+pre-commit install
+```
+{% else %}
 ```bash
 # Create virtual environment
 python -m venv .venv
@@ -26,6 +38,7 @@ pip install -r requirements-dev.txt
 # Install pre-commit hooks
 pre-commit install
 ```
+{% endif %}
 
 ## Making Changes
 
@@ -61,7 +74,7 @@ feat: add user authentication endpoint
 ### Testing
 
 - Write tests for all new features
-- Ensure all tests pass: `pytest`
+- Ensure all tests pass: {% if cookiecutter.testing_framework == 'pytest' %}`pytest`{% else %}`python -m unittest discover -v -s tests`{% endif %}
 - Maintain or improve test coverage
 - Include both unit and integration tests where appropriate
 
@@ -76,7 +89,7 @@ feat: add user authentication endpoint
 
 1. Ensure your code follows the project's style guidelines
 2. Run all tests and ensure they pass
-3. Run linting and type checking: `make lint && make type-check`
+3. Run linting and type checking{% if cookiecutter.use_makefile == 'y' %}: `make lint && make type-check`{% else %}: `ruff check . && mypy src`{% endif %}
 4. Update documentation as needed
 5. Submit a pull request with a clear description
 

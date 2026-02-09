@@ -139,3 +139,6 @@ dmypy.json
 logs/
 *.log
 
+# CI-generated (e.g. poetry export for safety check)
+requirements-export.txt
+

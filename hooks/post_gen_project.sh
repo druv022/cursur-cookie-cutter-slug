@@ -4,8 +4,9 @@
 
 set -e
 
+# CookieCutter already changes into the project directory before running this hook
+# So we're already in the project directory - no need to cd
 PROJECT_DIR="{{ cookiecutter.project_slug }}"
-cd "$PROJECT_DIR"
 
 echo "Running post-generation setup..."
 
@@ -16,6 +17,59 @@ fi
 if [ -f "hooks/post_gen_project.sh" ]; then
     chmod +x hooks/post_gen_project.sh
 fi
+
+# When Poetry is selected, remove pip-style requirements (deps are in pyproject.toml)
+if [ "{{ cookiecutter.dependency_manager }}" = "poetry" ]; then
+    rm -f requirements.txt requirements-dev.txt
+    echo "Poetry setup: removed requirements.txt and requirements-dev.txt (deps in pyproject.toml)."
+fi
+
+# Keep only the selected CI/CD config; remove others
+case "{{ cookiecutter.ci_cd }}" in
+    github-actions)
+        rm -f .gitlab-ci.yml
+        rm -rf .circleci
+        ;;
+    gitlab-ci)
+        rm -rf .github
+        rm -rf .circleci
+        ;;
+    circleci)
+        rm -rf .github
+        rm -f .gitlab-ci.yml
+        ;;
+    none)
+        rm -rf .github
+        rm -f .gitlab-ci.yml
+        rm -rf .circleci
+        echo "CI/CD: none selected, removed all CI config."
+        ;;
+esac
+
+# Remove Docker files if not requested
+if [ "{{ cookiecutter.use_docker }}" != "y" ]; then
+    rm -f Dockerfile docker-compose.yml
+    echo "Docker: disabled, removed Dockerfile and docker-compose.yml."
+fi
+
+# Remove Makefile if not requested
+if [ "{{ cookiecutter.use_makefile }}" != "y" ]; then
+    rm -f Makefile
+    echo "Makefile: disabled, removed Makefile."
+fi
+
+# Remove documentation tool files not selected
+case "{{ cookiecutter.documentation_tool }}" in
+    mkdocs)
+        rm -f docs/conf.py docs/index.rst 2>/dev/null || true
+        ;;
+    sphinx)
+        rm -f mkdocs.yml docs/index.md 2>/dev/null || true
+        ;;
+    none)
+        rm -f mkdocs.yml docs/conf.py docs/index.rst docs/index.md 2>/dev/null || true
+        ;;
+esac
 
 # Initialize git repository
 if command -v git &> /dev/null; then
@@ -47,14 +101,22 @@ echo "=========================================="
 echo ""
 echo "Next steps:"
 echo "1. cd $PROJECT_DIR"
-echo "2. Create a virtual environment: python -m venv .venv"
-echo "3. Activate virtual environment: source .venv/bin/activate"
-echo "4. Install dependencies: pip install -r requirements-dev.txt"
-if [ "{{ cookiecutter.use_pre_commit }}" = "y" ]; then
-    echo "5. Install pre-commit hooks: pre-commit install"
+if [ "{{ cookiecutter.dependency_manager }}" = "poetry" ]; then
+    echo "2. Install dependencies: poetry install"
+    echo "3. Activate virtual environment: poetry shell"
+    echo "4. (Optional) Install pre-commit hooks: pre-commit install"
+    echo "5. Update .env file with your configuration"
+    {% if cookiecutter.testing_framework == 'pytest' %}echo "6. Run tests: poetry run pytest"{% else %}echo "6. Run tests: poetry run python -m unittest discover -v -s tests"{% endif %}
+else
+    echo "2. Create a virtual environment: python -m venv .venv"
+    echo "3. Activate virtual environment: source .venv/bin/activate"
+    echo "4. Install dependencies: pip install -r requirements-dev.txt"
+    if [ "{{ cookiecutter.use_pre_commit }}" = "y" ]; then
+        echo "5. Install pre-commit hooks: pre-commit install"
+    fi
+    echo "6. Update .env file with your configuration"
+    {% if cookiecutter.testing_framework == 'pytest' %}echo "7. Run tests: pytest"{% else %}echo "7. Run tests: python -m unittest discover -v -s tests"{% endif %}
 fi
-echo "6. Update .env file with your configuration"
-echo "7. Run tests: pytest"
 echo ""
 echo "Happy coding!"
 echo ""
