@@ -5,7 +5,7 @@ A cookiecutter template for creating Python projects optimized for Cursor IDE wi
 ## Features
 
 - **Python-focused**: Modern Python project structure with type hints
-- **Cursor IDE optimized**: Includes `.cursorrules` for AI-assisted development
+- **Cursor IDE optimized**: Project rules, 26 agent skills (addyosmani/agent-skills + RTK + agentic patterns), lifecycle slash commands, and optional RTK token compression
 - **Best practices**: Pre-configured with modern tooling (Black, Ruff, MyPy, Pytest)
 - **Flexible environments**: Choose Poetry, uv, pip, or pip-tools for dependency management
 - **CI/CD ready**: GitHub Actions workflows included
@@ -47,26 +47,29 @@ You'll be prompted for:
 ## Template Structure
 
 ```
-{{cookiecutter.project_slug}}/
-├── cookiecutter.json          # Template configuration
-├── hooks/                     # Pre/post-generation hooks
+.
+├── cookiecutter.json
+├── hooks/
 │   ├── pre_gen_project.sh
 │   └── post_gen_project.sh
-└── {{cookiecutter.project_slug}}/  # Template files
-    ├── .cursorrules           # Cursor IDE AI guidelines
-    ├── .cursor/               # Cursor settings
-    ├── .vscode/               # VS Code/Cursor workspace settings
-    ├── .github/                # GitHub workflows
-    ├── src/                    # Source code
-    ├── tests/                  # Test suite
-    ├── docs/                   # Documentation
-    ├── pyproject.toml          # Python project config
-    ├── requirements.txt        # Production dependencies (pip/pip-tools)
-    ├── requirements-dev.txt   # Development dependencies (pip/pip-tools)
-    ├── Dockerfile             # Container configuration
-    ├── docker-compose.yml     # Docker Compose setup
-    ├── Makefile               # Development commands
-    └── README.md              # Project README template
+├── scripts/
+│   └── sync-agent-skills.sh   # Re-vendor addyosmani/agent-skills
+└── {{cookiecutter.project_slug}}/
+    ├── .cursor/
+    │   ├── rules/             # Thin .mdc policies (incl. agent-skills router)
+    │   ├── skills/            # 24 upstream + RTK + agentic-patterns
+    │   ├── commands/          # /spec /plan /build /test /review /…
+    │   ├── agents/            # Optional review personas
+    │   ├── hooks.json         # Project-local RTK preToolUse hook
+    │   └── hooks/
+    ├── references/            # Agent-skills checklists
+    ├── AGENT_SKILLS_VERSION   # Pinned upstream ref/sha
+    ├── RTK_VERSION
+    ├── scripts/install-rtk.sh
+    ├── .vscode/
+    ├── src/
+    ├── tests/
+    └── README.md
 ```
 
 ## What's Included
@@ -91,9 +94,25 @@ You'll be prompted for:
 
 ### Cursor IDE Integration
 
-- `.cursor/.cursorrules`: Comprehensive AI coding guidelines
-- `.cursor/settings.json`: Cursor-specific configuration
-- `.vscode/`: Workspace settings optimized for Python development
+- **Rules** (`.cursor/rules/*.mdc`): Short stack policies + always-on `agent-skills.mdc` router. Full workflows live in skills, not rules.
+- **Skills** (`.cursor/skills/`): Vendored [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) (pin in `AGENT_SKILLS_VERSION`) plus:
+  - `rtk-token-optimization` — when/how to use [RTK](https://github.com/rtk-ai/rtk)
+  - `awesome-agentic-patterns` — **live-fetch** latest patterns from [agentic-patterns.com/llms.txt](https://agentic-patterns.com/llms.txt) when building agentic apps
+- **Commands** (`.cursor/commands/`): `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf`
+- **References** (`references/`): Definition of done, testing/security/performance checklists
+- **RTK hook** (`.cursor/hooks.json`): Fail-open Shell rewrite; install binary via `scripts/install-rtk.sh` (never silent download in post-gen)
+- `.cursor/settings.json` and `.vscode/`: editor configuration
+
+#### Re-sync agent-skills
+
+```bash
+./scripts/sync-agent-skills.sh          # default pin 0.6.4
+./scripts/sync-agent-skills.sh 0.6.4    # explicit tag
+```
+
+Local skills (`rtk-token-optimization`, `awesome-agentic-patterns`) are preserved across sync.
+
+`cookiecutter.json` sets `_copy_without_render` for `.cursor/skills`, `.cursor/agents`, and `references` so vendored Markdown with `{{ }}` examples is copied verbatim.
 
 ### Documentation
 

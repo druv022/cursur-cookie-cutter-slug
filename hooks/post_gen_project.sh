@@ -93,6 +93,28 @@ if [ -f ".env.example" ] && [ ! -f ".env" ]; then
     echo "Please update .env with your configuration."
 fi
 
+# Cursor / RTK helpers (fail-open; never download binaries here)
+if [ -f ".cursor/hooks/rtk-rewrite.sh" ]; then
+    chmod +x .cursor/hooks/rtk-rewrite.sh
+fi
+if [ -f "scripts/install-rtk.sh" ]; then
+    chmod +x scripts/install-rtk.sh
+fi
+
+echo ""
+echo "Cursor agent tooling:"
+if [ -f "AGENT_SKILLS_VERSION" ]; then
+    echo "  - Agent skills vendored (see AGENT_SKILLS_VERSION)"
+fi
+echo "  - Lifecycle commands: /spec /plan /build /test /review /code-simplify /ship /webperf"
+echo "  - Agentic patterns: live fetch via .cursor/skills/awesome-agentic-patterns (agentic-patterns.com/llms.txt)"
+if command -v rtk >/dev/null 2>&1 && rtk gain >/dev/null 2>&1; then
+    echo "  - RTK: active on PATH ($(rtk --version 2>/dev/null || echo rtk)); project hook .cursor/hooks.json is ready"
+else
+    echo "  - RTK: not installed (or wrong package). Optional: ./scripts/install-rtk.sh then restart Cursor"
+    echo "    Pin: see RTK_VERSION. Telemetry stays opt-in."
+fi
+
 # Display next steps
 echo ""
 echo "=========================================="

@@ -15,7 +15,27 @@
 {% if cookiecutter.ci_cd != 'none' %}
 - CI/CD pipelines ({% if cookiecutter.ci_cd == 'github-actions' %}GitHub Actions{% elif cookiecutter.ci_cd == 'gitlab-ci' %}GitLab CI{% elif cookiecutter.ci_cd == 'circleci' %}CircleCI{% endif %})
 {% endif %}
-- Cursor IDE optimized with `.cursorrules`
+- Cursor IDE optimized: agent skills, lifecycle slash commands, and optional RTK token compression
+
+## Cursor / AI tooling
+
+This project ships Cursor Agent configuration under `.cursor/`:
+
+| Layer | Path | Purpose |
+|-------|------|---------|
+| Rules | `.cursor/rules/*.mdc` | Short always-on / file-scoped policies; `agent-skills.mdc` routes work |
+| Skills | `.cursor/skills/` | Lifecycle workflows (addyosmani/agent-skills) + local RTK & agentic-patterns skills |
+| Commands | `.cursor/commands/` | Slash commands: `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf` |
+| References | `references/` | Shared checklists (definition of done, testing, security, …) |
+| RTK hook | `.cursor/hooks.json` | Fail-open Shell rewrite through RTK when installed |
+
+Greenfield flow: `/spec` → `/plan` → `/build` → `/review` → `/ship`.
+
+**Agentic apps:** load `.cursor/skills/awesome-agentic-patterns` and **fetch** latest from [https://agentic-patterns.com/llms.txt](https://agentic-patterns.com/llms.txt) (do not use stale memory). Upstream catalogue: [nibzard/awesome-agentic-patterns](https://github.com/nibzard/awesome-agentic-patterns).
+
+**RTK (optional):** compresses verbose CLI output. Install with `./scripts/install-rtk.sh` (see `RTK_VERSION`), then restart Cursor. Bypass with `RTK_DISABLED=1`. Telemetry is opt-in only. Verify the correct binary with `rtk gain`.
+
+Pinned agent-skills version: see `AGENT_SKILLS_VERSION`.
 
 ## Requirements
 
