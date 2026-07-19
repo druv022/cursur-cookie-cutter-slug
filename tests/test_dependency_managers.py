@@ -164,3 +164,7 @@ def test_uv_variant_renders_selected_ci_pipeline(
     assert "uv sync" in pipeline
     assert "uv run" in pipeline
     assert "uv export --no-dev" in pipeline
+    if ci_cd == "circleci":
+        assert "pip install uv bandit safety" in pipeline
+        assert "run: bandit -r . -ll" in pipeline
+        assert "uv run --with bandit" not in pipeline
