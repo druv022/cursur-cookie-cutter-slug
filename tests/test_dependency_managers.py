@@ -164,3 +164,39 @@ def test_uv_variant_renders_selected_ci_pipeline(
     assert "uv sync" in pipeline
     assert "uv run" in pipeline
     assert "uv export --no-dev" in pipeline
+
+
+@pytest.mark.parametrize(
+    ("manager", "install_command"),
+    [
+        ("poetry", "pip install poetry bandit safety"),
+        ("uv", "pip install uv bandit safety"),
+    ],
+)
+def test_gitlab_security_bandit_runs_from_pip_environment(
+    tmp_path: Path, cookiecutter_config: Path, manager: str, install_command: str
+) -> None:
+    """Ensure GitLab security job installs and executes Bandit consistently."""
+    output_path = Path(
+        cookiecutter(
+            str(TEMPLATE_ROOT),
+            no_input=True,
+            output_dir=str(tmp_path),
+            extra_context={
+                "project_name": f"security_{manager}",
+                "project_slug": f"security_{manager}",
+                "dependency_manager": manager,
+                "ci_cd": "gitlab-ci",
+                "use_docker": "n",
+                "use_makefile": "n",
+            },
+            config_file=str(cookiecutter_config),
+        )
+    )
+
+    pipeline = (output_path / ".gitlab-ci.yml").read_text(encoding="utf-8")
+
+    assert install_command in pipeline
+    assert "\n    - bandit -r . -ll\n" in pipeline
+    assert "poetry run bandit -r . -ll" not in pipeline
+    assert "uv run --with bandit bandit -r . -ll" not in pipeline
