@@ -4,8 +4,10 @@
 
 ## Quick links
 
+- [Development](DEVELOPMENT.md)
 - [Architecture](ARCHITECTURE.md)
 - [Contributing](CONTRIBUTING.md)
+- [Cursor agent skills](CURSOR_AGENT_SKILLS.md)
 
 ## Installation
 

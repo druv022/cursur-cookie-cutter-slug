@@ -31,6 +31,8 @@ This project ships Cursor Agent configuration under `.cursor/`:
 
 Greenfield flow: `/spec` → `/plan` → `/build` → `/review` → `/ship`.
 
+**Development guide:** after generation, follow [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for setup, Cursor workflow, daily commands, and troubleshooting.
+
 **Agentic apps:** load `.cursor/skills/awesome-agentic-patterns` and **fetch** latest from [https://agentic-patterns.com/llms.txt](https://agentic-patterns.com/llms.txt) (do not use stale memory). Upstream catalogue: [nibzard/awesome-agentic-patterns](https://github.com/nibzard/awesome-agentic-patterns).
 
 **RTK (optional):** compresses verbose CLI output. Install with `./scripts/install-rtk.sh` (see `RTK_VERSION`), then restart Cursor. Bypass with `RTK_DISABLED=1`. Telemetry is opt-in only. Verify the correct binary with `rtk gain`.
@@ -207,6 +209,7 @@ make docker-up
 │   ├── __init__.py
 │   └── test_main.py
 ├── docs/
+│   ├── DEVELOPMENT.md
 │   ├── CONTRIBUTING.md
 │   └── ARCHITECTURE.md
 {% if cookiecutter.documentation_tool == 'mkdocs' %}

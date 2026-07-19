@@ -1,0 +1,547 @@
+{
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/.cursor/settings.json": {
+    "mtime": 1770615125.7843437,
+    "ast_hash": "80805aa8ef66e7583e1cc459df58d415",
+    "semantic_hash": "80805aa8ef66e7583e1cc459df58d415"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/cookiecutter.json": {
+    "mtime": 1784486728.767325,
+    "ast_hash": "0ff7a445a19e4d0dc331f7b031db89d3",
+    "semantic_hash": "0ff7a445a19e4d0dc331f7b031db89d3"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/hooks/post_gen_project.sh": {
+    "mtime": 1784486651.4755142,
+    "ast_hash": "2be5030a1efaadb3725d99dbac293c20",
+    "semantic_hash": "2be5030a1efaadb3725d99dbac293c20"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/hooks/pre_gen_project.sh": {
+    "mtime": 1767652282.7805455,
+    "ast_hash": "7e3e476fc2deb69db61fc57c6d79f7e2",
+    "semantic_hash": "7e3e476fc2deb69db61fc57c6d79f7e2"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/.cursor/settings.json": {
+    "mtime": 1770615564.6311402,
+    "ast_hash": "ca2e87c5042dec62f769678f30099d88",
+    "semantic_hash": "ca2e87c5042dec62f769678f30099d88"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/coverage_html_cb_dd2e7eb5.js": {
+    "mtime": 1770615572.939924,
+    "ast_hash": "47d6ea8f87058d0cea6b52102adf1b13",
+    "semantic_hash": "47d6ea8f87058d0cea6b52102adf1b13"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/status.json": {
+    "mtime": 1770615572.942703,
+    "ast_hash": "4bd05b69330c4a488eafe0a0b24786a1",
+    "semantic_hash": "4bd05b69330c4a488eafe0a0b24786a1"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/src/my_awesome_project/__init__.py": {
+    "mtime": 1770615564.648971,
+    "ast_hash": "6df383a64696a296094343301b4fab49",
+    "semantic_hash": "6df383a64696a296094343301b4fab49"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/src/my_awesome_project/main.py": {
+    "mtime": 1770615564.6496453,
+    "ast_hash": "80d59b33a20987608827e11b266403a1",
+    "semantic_hash": "80d59b33a20987608827e11b266403a1"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/tests/__init__.py": {
+    "mtime": 1770615564.636721,
+    "ast_hash": "e46292d9d89fb82093cdda2321daf55d",
+    "semantic_hash": "e46292d9d89fb82093cdda2321daf55d"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/tests/test_main.py": {
+    "mtime": 1770615564.637966,
+    "ast_hash": "c32f6cc66da83a8007da2c71d1485007",
+    "semantic_hash": "c32f6cc66da83a8007da2c71d1485007"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/scripts/sync-agent-skills.sh": {
+    "mtime": 1784486626.1501,
+    "ast_hash": "c0328f264f340823736e08b3bab70021",
+    "semantic_hash": "c0328f264f340823736e08b3bab70021"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/tests/test_dependency_managers.py": {
+    "mtime": 1784485061.6186585,
+    "ast_hash": "b2342bd1efe5f6e366cf78dd4dc6c409",
+    "semantic_hash": "b2342bd1efe5f6e366cf78dd4dc6c409"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/hooks.json": {
+    "mtime": 1784486642.335269,
+    "ast_hash": "5da726ffab189ea95fdf830fbba73704",
+    "semantic_hash": "5da726ffab189ea95fdf830fbba73704"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/hooks/rtk-rewrite.sh": {
+    "mtime": 1784486636.4320164,
+    "ast_hash": "3c4d95750101cd14b19fc61d07033c64",
+    "semantic_hash": "3c4d95750101cd14b19fc61d07033c64"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/settings.json": {
+    "mtime": 1767652282.781419,
+    "ast_hash": "ca2e87c5042dec62f769678f30099d88",
+    "semantic_hash": "ca2e87c5042dec62f769678f30099d88"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/idea-refine/scripts/idea-refine.sh": {
+    "mtime": 1784486623.0,
+    "ast_hash": "7d09d06b836527b5261a27027b1d8548",
+    "semantic_hash": "7d09d06b836527b5261a27027b1d8548"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docs/conf.py": {
+    "mtime": 1770614569.157153,
+    "ast_hash": "2ea0fc4af97dc0773decb97bd3782991",
+    "semantic_hash": "2ea0fc4af97dc0773decb97bd3782991"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/scripts/install-rtk.sh": {
+    "mtime": 1784486642.3505385,
+    "ast_hash": "f2ac96f5391107f6e0f6e2d025122cfb",
+    "semantic_hash": "f2ac96f5391107f6e0f6e2d025122cfb"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/src/{{cookiecutter.project_slug}}/__init__.py": {
+    "mtime": 1767652282.78256,
+    "ast_hash": "2292a04f8341530923de1e11d38f641d",
+    "semantic_hash": "2292a04f8341530923de1e11d38f641d"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/src/{{cookiecutter.project_slug}}/main.py": {
+    "mtime": 1767652282.782623,
+    "ast_hash": "907d2f8841f5249916c6e5b661746a3a",
+    "semantic_hash": "907d2f8841f5249916c6e5b661746a3a"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/tests/__init__.py": {
+    "mtime": 1767652282.782717,
+    "ast_hash": "ed3547da1cf709a6e271a5450efb32d2",
+    "semantic_hash": "ed3547da1cf709a6e271a5450efb32d2"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/tests/test_main.py": {
+    "mtime": 1770615489.5642784,
+    "ast_hash": "e62aa63b919e0cd9211de6c7ad77b961",
+    "semantic_hash": "e62aa63b919e0cd9211de6c7ad77b961"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/PROMPTS.md": {
+    "mtime": 1784484888.1947944,
+    "ast_hash": "39338d5111d3ce033e3346c82a1d1a8f",
+    "semantic_hash": "39338d5111d3ce033e3346c82a1d1a8f"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/README.md": {
+    "mtime": 1784486739.313459,
+    "ast_hash": "28a6d9c22c44fcd66a557427b0ab2f52",
+    "semantic_hash": "28a6d9c22c44fcd66a557427b0ab2f52"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/.github/workflows/ci.yml": {
+    "mtime": 1770615564.6453733,
+    "ast_hash": "9b5727523e859647223a8eb2c779d314",
+    "semantic_hash": "9b5727523e859647223a8eb2c779d314"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/.github/workflows/release.yml": {
+    "mtime": 1770615564.6432922,
+    "ast_hash": "875c009f4ffa145c92e0cfd5719c0ad5",
+    "semantic_hash": "875c009f4ffa145c92e0cfd5719c0ad5"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/.pre-commit-config.yaml": {
+    "mtime": 1770615564.6117113,
+    "ast_hash": "989a73464db2300a191ea7dcd8dd18f2",
+    "semantic_hash": "989a73464db2300a191ea7dcd8dd18f2"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/PROMPTS.md": {
+    "mtime": 1770615564.630446,
+    "ast_hash": "582dd8182a7370e114a123175e1599b0",
+    "semantic_hash": "582dd8182a7370e114a123175e1599b0"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/README.md": {
+    "mtime": 1770615564.6258073,
+    "ast_hash": "a5be3ff5a240986ce77b6dd2ccf6e879",
+    "semantic_hash": "a5be3ff5a240986ce77b6dd2ccf6e879"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/docker-compose.yml": {
+    "mtime": 1770615564.6281984,
+    "ast_hash": "7d27738341cef2a5f0e06b45708747a6",
+    "semantic_hash": "7d27738341cef2a5f0e06b45708747a6"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/docs/ARCHITECTURE.md": {
+    "mtime": 1770615564.6397903,
+    "ast_hash": "640e5d14a55008fffd5f7b1b2992613e",
+    "semantic_hash": "640e5d14a55008fffd5f7b1b2992613e"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/docs/CONTRIBUTING.md": {
+    "mtime": 1770615564.6421707,
+    "ast_hash": "6ae258b8830f6d05350c04a04c706e4b",
+    "semantic_hash": "6ae258b8830f6d05350c04a04c706e4b"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/docs/index.md": {
+    "mtime": 1770615564.641015,
+    "ast_hash": "f437a7090ee6c429549621494b0eea11",
+    "semantic_hash": "f437a7090ee6c429549621494b0eea11"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/class_index.html": {
+    "mtime": 1770615572.9434407,
+    "ast_hash": "2a6e2451166c9c9d476aba811f4476f6",
+    "semantic_hash": "2a6e2451166c9c9d476aba811f4476f6"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/function_index.html": {
+    "mtime": 1770615572.9431534,
+    "ast_hash": "2083b454d7d066506c64e8cbc3d8c258",
+    "semantic_hash": "2083b454d7d066506c64e8cbc3d8c258"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/index.html": {
+    "mtime": 1770615572.9425554,
+    "ast_hash": "bae632a3d84b94fb5837a54129e3d45c",
+    "semantic_hash": "bae632a3d84b94fb5837a54129e3d45c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/z_18ee9cfd99ef5de1___init___py.html": {
+    "mtime": 1770615572.9411428,
+    "ast_hash": "17b202c9c34f8c54e9f0ea741797a7f5",
+    "semantic_hash": "17b202c9c34f8c54e9f0ea741797a7f5"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/z_18ee9cfd99ef5de1_main_py.html": {
+    "mtime": 1770615572.9422116,
+    "ast_hash": "b931560cf55d3d4c298708611decadbf",
+    "semantic_hash": "b931560cf55d3d4c298708611decadbf"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/mkdocs.yml": {
+    "mtime": 1770615564.607229,
+    "ast_hash": "8d90d887ac805dec629608e3eb1d8474",
+    "semantic_hash": "8d90d887ac805dec629608e3eb1d8474"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/requirements-dev.txt": {
+    "mtime": 1770615564.6264598,
+    "ast_hash": "6549c9b3e62ee260e344bf610309ae0c",
+    "semantic_hash": "6549c9b3e62ee260e344bf610309ae0c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/requirements.txt": {
+    "mtime": 1770615564.611034,
+    "ast_hash": "36e618e1379475efadb776222043dfc6",
+    "semantic_hash": "36e618e1379475efadb776222043dfc6"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/requirements-dev.txt": {
+    "mtime": 1784484883.7068276,
+    "ast_hash": "60e8fe8b139ffb70889db8d9f943f14c",
+    "semantic_hash": "60e8fe8b139ffb70889db8d9f943f14c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.circleci/config.yml": {
+    "mtime": 1784484845.2640831,
+    "ast_hash": "190d39c65cfb2d22d2f0cee17a33efdf",
+    "semantic_hash": "190d39c65cfb2d22d2f0cee17a33efdf"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/agents/code-reviewer.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "e2e731a69fa599f7bc5319b76a9a5335",
+    "semantic_hash": "e2e731a69fa599f7bc5319b76a9a5335"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/agents/security-auditor.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "88970bc2e33737479ec771b9d7280b59",
+    "semantic_hash": "88970bc2e33737479ec771b9d7280b59"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/agents/test-engineer.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "3245a0e677806330c33d286cbdd38d77",
+    "semantic_hash": "3245a0e677806330c33d286cbdd38d77"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/agents/web-performance-auditor.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "52f9fb3895c2c79bd865c7c95331df79",
+    "semantic_hash": "52f9fb3895c2c79bd865c7c95331df79"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/build.md": {
+    "mtime": 1784486623.3749917,
+    "ast_hash": "f26dc623b1484cc1e44a35159b0788f5",
+    "semantic_hash": "f26dc623b1484cc1e44a35159b0788f5"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/code-simplify.md": {
+    "mtime": 1784486623.3793206,
+    "ast_hash": "5c7a8aa22153be93caa5c9db214ef119",
+    "semantic_hash": "5c7a8aa22153be93caa5c9db214ef119"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/plan.md": {
+    "mtime": 1784486623.3827722,
+    "ast_hash": "40d4ef16a54fa061570e23912a42944e",
+    "semantic_hash": "40d4ef16a54fa061570e23912a42944e"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/review.md": {
+    "mtime": 1784486623.3866458,
+    "ast_hash": "0185abc56f656d131f9c67e242d1cc83",
+    "semantic_hash": "0185abc56f656d131f9c67e242d1cc83"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/ship.md": {
+    "mtime": 1784486623.3898551,
+    "ast_hash": "ea72137495a37d37a88a763976013aab",
+    "semantic_hash": "ea72137495a37d37a88a763976013aab"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/spec.md": {
+    "mtime": 1784486623.393786,
+    "ast_hash": "134ef231c15384cb1ea022498381824a",
+    "semantic_hash": "134ef231c15384cb1ea022498381824a"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/test.md": {
+    "mtime": 1784486623.3969672,
+    "ast_hash": "d6a0f933f35aed991b6dc8a8c85a25fe",
+    "semantic_hash": "d6a0f933f35aed991b6dc8a8c85a25fe"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/commands/webperf.md": {
+    "mtime": 1784486623.4004498,
+    "ast_hash": "862ecfde28e418484b7174aa0fc5edf0",
+    "semantic_hash": "862ecfde28e418484b7174aa0fc5edf0"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/api-and-interface-design/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "1e7577a49384c2d16eda0954677d6711",
+    "semantic_hash": "1e7577a49384c2d16eda0954677d6711"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/awesome-agentic-patterns/SKILL.md": {
+    "mtime": 1784486645.9278207,
+    "ast_hash": "7c5e31b8ee86b4505c4eac82c1428036",
+    "semantic_hash": "7c5e31b8ee86b4505c4eac82c1428036"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/browser-testing-with-devtools/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "639b3e0f3bae1118b986269fb7bd5e87",
+    "semantic_hash": "639b3e0f3bae1118b986269fb7bd5e87"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/ci-cd-and-automation/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "6a3b179662eb6f3b434bb3e95201d45f",
+    "semantic_hash": "6a3b179662eb6f3b434bb3e95201d45f"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/code-review-and-quality/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "096f63edff9c9d3101f29a1e31fd3525",
+    "semantic_hash": "096f63edff9c9d3101f29a1e31fd3525"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/code-simplification/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "239dbb2a2f3caca0de086f7e0e0ebb03",
+    "semantic_hash": "239dbb2a2f3caca0de086f7e0e0ebb03"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/context-engineering/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "51c73a9d507cfdf45bb2fc10742fe147",
+    "semantic_hash": "51c73a9d507cfdf45bb2fc10742fe147"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/debugging-and-error-recovery/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "12d41c57d8bb597c6f738f5d4ce9ef27",
+    "semantic_hash": "12d41c57d8bb597c6f738f5d4ce9ef27"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/deprecation-and-migration/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "9469f95c323f34e3ef4784b20fb85c9f",
+    "semantic_hash": "9469f95c323f34e3ef4784b20fb85c9f"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/documentation-and-adrs/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "3fde17c9e49ead84fb2d654dcab79195",
+    "semantic_hash": "3fde17c9e49ead84fb2d654dcab79195"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/doubt-driven-development/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "e586f44ec292216123a8c4486c3f32e0",
+    "semantic_hash": "e586f44ec292216123a8c4486c3f32e0"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/frontend-ui-engineering/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "6bc70d6d97160d01b9d7ffbb9f2112ac",
+    "semantic_hash": "6bc70d6d97160d01b9d7ffbb9f2112ac"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/git-workflow-and-versioning/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "54a50c2845cc3471ed5e977d9deeab3c",
+    "semantic_hash": "54a50c2845cc3471ed5e977d9deeab3c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/idea-refine/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "7af2490cfd895ad7d419e6112985f4b3",
+    "semantic_hash": "7af2490cfd895ad7d419e6112985f4b3"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/idea-refine/examples.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "8e3e911c980f371e695e786d5b22b495",
+    "semantic_hash": "8e3e911c980f371e695e786d5b22b495"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/idea-refine/frameworks.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "fa20786abdfa9de40c6886a8d7c958f2",
+    "semantic_hash": "fa20786abdfa9de40c6886a8d7c958f2"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/idea-refine/refinement-criteria.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "5ce82e7acc7b4b2b9dcd843fb9dcd1d6",
+    "semantic_hash": "5ce82e7acc7b4b2b9dcd843fb9dcd1d6"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/incremental-implementation/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "3f597d1cf25303599ce8caf52e526c1d",
+    "semantic_hash": "3f597d1cf25303599ce8caf52e526c1d"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/interview-me/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "9d57d4cd52197bad45adefee66226088",
+    "semantic_hash": "9d57d4cd52197bad45adefee66226088"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/observability-and-instrumentation/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "c3d1156d3cb5f4050fcec0001074b9d3",
+    "semantic_hash": "c3d1156d3cb5f4050fcec0001074b9d3"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/performance-optimization/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "2e72ac29dae00848fdab1c29430ea779",
+    "semantic_hash": "2e72ac29dae00848fdab1c29430ea779"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/planning-and-task-breakdown/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "c94af49d92d0ebb9214fd71620c1c83f",
+    "semantic_hash": "c94af49d92d0ebb9214fd71620c1c83f"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/rtk-token-optimization/SKILL.md": {
+    "mtime": 1784486630.7170148,
+    "ast_hash": "fc6a1b2bae6f48a4ba54d5e9cc192e9c",
+    "semantic_hash": "fc6a1b2bae6f48a4ba54d5e9cc192e9c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/security-and-hardening/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "7e033038ad727bec978d24324084d6c2",
+    "semantic_hash": "7e033038ad727bec978d24324084d6c2"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/shipping-and-launch/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "4e9a6fec3d5f87dec44a03d6b681f58b",
+    "semantic_hash": "4e9a6fec3d5f87dec44a03d6b681f58b"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/source-driven-development/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "eec37f9aa8f509c88ea59b82addcc971",
+    "semantic_hash": "eec37f9aa8f509c88ea59b82addcc971"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/spec-driven-development/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "ec01faac50c513c9b0bd6a2c75e9f558",
+    "semantic_hash": "ec01faac50c513c9b0bd6a2c75e9f558"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/test-driven-development/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "451c0d42e3bdef8ecfcba30eb806c93b",
+    "semantic_hash": "451c0d42e3bdef8ecfcba30eb806c93b"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.cursor/skills/using-agent-skills/SKILL.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "c766c1c019b3dc25a43a3c051c22a58c",
+    "semantic_hash": "c766c1c019b3dc25a43a3c051c22a58c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.github/workflows/ci.yml": {
+    "mtime": 1784484830.733674,
+    "ast_hash": "38514816f692cac5672a505fc749c6ac",
+    "semantic_hash": "38514816f692cac5672a505fc749c6ac"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.github/workflows/release.yml": {
+    "mtime": 1767653893.7296093,
+    "ast_hash": "4134f26a3cae145008226c70d5b11444",
+    "semantic_hash": "4134f26a3cae145008226c70d5b11444"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.gitlab-ci.yml": {
+    "mtime": 1784484838.3777688,
+    "ast_hash": "d22ed65c0d481eb10653330a390f7de9",
+    "semantic_hash": "d22ed65c0d481eb10653330a390f7de9"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/.pre-commit-config.yaml": {
+    "mtime": 1767652282.7817597,
+    "ast_hash": "989a73464db2300a191ea7dcd8dd18f2",
+    "semantic_hash": "989a73464db2300a191ea7dcd8dd18f2"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/PROMPTS.md": {
+    "mtime": 1767652282.781951,
+    "ast_hash": "582dd8182a7370e114a123175e1599b0",
+    "semantic_hash": "582dd8182a7370e114a123175e1599b0"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/README.md": {
+    "mtime": 1784486662.3577657,
+    "ast_hash": "179b659df812b0d71d61aea1ae7d4d83",
+    "semantic_hash": "179b659df812b0d71d61aea1ae7d4d83"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docker-compose.yml": {
+    "mtime": 1770615382.7866108,
+    "ast_hash": "3a2225f45a98b0aade1c2e468c92bd1d",
+    "semantic_hash": "3a2225f45a98b0aade1c2e468c92bd1d"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docs/ARCHITECTURE.md": {
+    "mtime": 1767652282.7821743,
+    "ast_hash": "00dc3ef3cf956b0b31841826e56d8ba8",
+    "semantic_hash": "00dc3ef3cf956b0b31841826e56d8ba8"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docs/CONTRIBUTING.md": {
+    "mtime": 1784484808.087333,
+    "ast_hash": "f503db7dc6e3bfd9bc9eefbf464fc3fd",
+    "semantic_hash": "f503db7dc6e3bfd9bc9eefbf464fc3fd"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docs/CURSOR_AGENT_SKILLS.md": {
+    "mtime": 1784486668.2314646,
+    "ast_hash": "adb58084c2d4493ea1f1b3cca5f7874f",
+    "semantic_hash": "adb58084c2d4493ea1f1b3cca5f7874f"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docs/index.md": {
+    "mtime": 1770614528.5984247,
+    "ast_hash": "3a54e23b88868353b0af6d8195f27179",
+    "semantic_hash": "3a54e23b88868353b0af6d8195f27179"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/docs/index.rst": {
+    "mtime": 1770614542.8471735,
+    "ast_hash": "75ebecf2d58d4a954b7b12a931a6d0db",
+    "semantic_hash": "75ebecf2d58d4a954b7b12a931a6d0db"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/mkdocs.yml": {
+    "mtime": 1770614522.9595969,
+    "ast_hash": "6e5558235f160614ad0d044170c3dfb3",
+    "semantic_hash": "6e5558235f160614ad0d044170c3dfb3"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/accessibility-checklist.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "48ca786064dea786af8a1d15579bc87c",
+    "semantic_hash": "48ca786064dea786af8a1d15579bc87c"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/definition-of-done.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "ef3cfa41831aad4e76c82b5bc8e4b174",
+    "semantic_hash": "ef3cfa41831aad4e76c82b5bc8e4b174"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/observability-checklist.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "3941c57265d1b98f59d9527a27465d60",
+    "semantic_hash": "3941c57265d1b98f59d9527a27465d60"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/orchestration-patterns.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "17e700500bfe71c82e43f779ad56aa9e",
+    "semantic_hash": "17e700500bfe71c82e43f779ad56aa9e"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/performance-checklist.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "8d419c273398168eb5d25544c81f45dc",
+    "semantic_hash": "8d419c273398168eb5d25544c81f45dc"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/security-checklist.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "313c14846b5d2b7710ad032a515f7f0d",
+    "semantic_hash": "313c14846b5d2b7710ad032a515f7f0d"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/references/testing-patterns.md": {
+    "mtime": 1784486623.0,
+    "ast_hash": "b34a71220d5884f83f8339330a04e730",
+    "semantic_hash": "b34a71220d5884f83f8339330a04e730"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/requirements-dev.txt": {
+    "mtime": 1770614456.9928052,
+    "ast_hash": "3e90ed95676e615148d9d11e6e2ad3d0",
+    "semantic_hash": "3e90ed95676e615148d9d11e6e2ad3d0"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/{{cookiecutter.project_slug}}/requirements.txt": {
+    "mtime": 1767652282.7824202,
+    "ast_hash": "3b39981235970eaebbd2799fc91cee72",
+    "semantic_hash": "3b39981235970eaebbd2799fc91cee72"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/favicon_32_cb_c827f16f.png": {
+    "mtime": 1770615572.9402733,
+    "ast_hash": "fe1c45ede5eaa2eaa3aff71f210afb26",
+    "semantic_hash": "fe1c45ede5eaa2eaa3aff71f210afb26"
+  },
+  "/Users/dhrubapujary/z_WORK/Codes/cookie-cutter/cursur-cookie-cutter-slug/my_awesome_project/htmlcov/keybd_closed_cb_900cfef5.png": {
+    "mtime": 1770615572.94015,
+    "ast_hash": "8285ae9f3a2652fbb7ffb8575590d91f",
+    "semantic_hash": "8285ae9f3a2652fbb7ffb8575590d91f"
+  }
+}

@@ -14,8 +14,10 @@ theme:
 
 nav:
   - Home: index.md
+  - Development: DEVELOPMENT.md
   - Architecture: ARCHITECTURE.md
   - Contributing: CONTRIBUTING.md
+  - Cursor agent skills: CURSOR_AGENT_SKILLS.md
 
 plugins:
   - search

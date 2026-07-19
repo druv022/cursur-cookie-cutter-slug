@@ -1,0 +1,1 @@
+{"nodes": [{"id": "my_awesome_project_docker_compose_app_service", "label": "Docker Compose App Service", "file_type": "concept", "source_file": "my_awesome_project/docker-compose.yml", "source_location": "lines 5-23", "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}
