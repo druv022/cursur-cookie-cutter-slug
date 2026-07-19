@@ -83,7 +83,11 @@ dependencies = [
     {% endif %}
 ]
 
+{% if cookiecutter.dependency_manager == 'uv' %}
+[dependency-groups]
+{% else %}
 [project.optional-dependencies]
+{% endif %}
 dev = [
     {% if cookiecutter.testing_framework == 'pytest' %}
     "pytest>=7.4",

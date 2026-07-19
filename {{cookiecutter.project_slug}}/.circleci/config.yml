@@ -14,12 +14,14 @@ jobs:
             python -m pip install --upgrade pip
             {% if cookiecutter.dependency_manager == 'poetry' %}
             pip install poetry && poetry install
+            {% elif cookiecutter.dependency_manager == 'uv' %}
+            pip install uv && uv sync
             {% else %}
             pip install -r requirements-dev.txt
             {% endif %}
-      - run: ruff check .
-      - run: black --check .
-      - run: mypy src
+      - run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}ruff check .
+      - run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}black --check .
+      - run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}mypy src
 
   test:
     executor: python/default
@@ -35,6 +37,8 @@ jobs:
             python -m pip install --upgrade pip
             {% if cookiecutter.dependency_manager == 'poetry' %}
             pip install poetry && poetry install
+            {% elif cookiecutter.dependency_manager == 'uv' %}
+            pip install uv && uv sync
             {% else %}
             pip install -r requirements-dev.txt
             {% endif %}
@@ -42,11 +46,11 @@ jobs:
           name: Run tests
           command: |
             {% if cookiecutter.testing_framework == 'pytest' %}
-            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=xml --cov-report=term
+            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=xml --cov-report=term
             {% else %}
-            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage run -m unittest discover -v -s tests -p "test_*.py"
-            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage xml
-            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage report
+            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage run -m unittest discover -v -s tests -p "test_*.py"
+            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage xml
+            {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage report
             {% endif %}
       - store_artifacts:
           path: coverage.xml
@@ -64,12 +68,16 @@ jobs:
             python -m pip install --upgrade pip
             {% if cookiecutter.dependency_manager == 'poetry' %}
             pip install poetry bandit safety && poetry install && poetry export -f requirements.txt --without-hashes -o requirements-export.txt
+            {% elif cookiecutter.dependency_manager == 'uv' %}
+            pip install uv safety && uv sync && uv export --no-dev --no-hashes --output-file requirements-export.txt
             {% else %}
             pip install -r requirements-dev.txt bandit safety
             {% endif %}
-      - run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}bandit -r . -ll
+      - run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run --with bandit {% endif %}bandit -r . -ll
       - run: |
           {% if cookiecutter.dependency_manager == 'poetry' %}
+          safety check --file requirements-export.txt
+          {% elif cookiecutter.dependency_manager == 'uv' %}
           safety check --file requirements-export.txt
           {% else %}
           safety check --file requirements.txt

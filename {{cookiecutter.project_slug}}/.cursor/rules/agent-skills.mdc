@@ -1,0 +1,28 @@
+---
+description: Use agent-skills workflows from .cursor/skills; route RTK and agentic patterns when relevant
+alwaysApply: true
+---
+
+# Agent Skills Routing
+
+Before non-trivial technical work:
+
+1. Route via `.cursor/skills/using-agent-skills/SKILL.md`.
+2. Read and follow the matching skill under `.cursor/skills/<name>/SKILL.md`.
+3. Open files under `references/` when a skill links them.
+4. Prefer project skills over guessing; the user does not need to say "read skill" each time.
+
+## Project-local skills
+
+- **Verbose shell / test / build / lint / git / docker output:** also load `.cursor/skills/rtk-token-optimization/SKILL.md` so commands stay token-efficient when RTK is available.
+- **Agentic applications / multi-agent systems / agent tooling / orchestration / memory / tool routing:** also load `.cursor/skills/awesome-agentic-patterns/SKILL.md` and **fetch the latest** catalogue (do not rely on memorized patterns) before proposing architecture.
+
+## Project precedence
+
+These stack rules still win for this template's non-negotiables:
+
+- 100% unit-test coverage (`unit-testing-requirements`)
+- FastAPI / Python conventions (`py-fastapi-dev`, `python-dev-best-practices`)
+- Prompt logging to `PROMPTS.md` (`log-prompts`)
+- README updates and branch-per-change (`git-rules`)
+- How-to documentation style (`documentation`)

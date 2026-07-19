@@ -1,0 +1,4 @@
+version=0.43.0
+source=https://github.com/rtk-ai/rtk
+install=scripts/install-rtk.sh
+notes=Pinned for this template. Re-run install-rtk.sh after bumping this file. Telemetry remains opt-in.

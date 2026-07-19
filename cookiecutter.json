@@ -22,6 +22,7 @@
   ],
   "dependency_manager": [
     "poetry",
+    "uv",
     "pip",
     "pip-tools"
   ],
@@ -42,6 +43,11 @@
   ],
   "use_docker": "y",
   "use_pre_commit": "y",
-  "use_makefile": "y"
+  "use_makefile": "y",
+  "_copy_without_render": [
+    ".cursor/skills",
+    ".cursor/agents",
+    "references"
+  ]
 }
 

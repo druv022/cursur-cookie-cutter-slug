@@ -25,18 +25,21 @@ jobs:
           {% if cookiecutter.dependency_manager == 'poetry' %}
           pip install poetry
           poetry install
+          {% elif cookiecutter.dependency_manager == 'uv' %}
+          pip install uv
+          uv sync
           {% else %}
           pip install -r requirements-dev.txt
           {% endif %}
       
       - name: Run Ruff
-        run: ruff check .
+        run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}ruff check .
       
       - name: Check formatting with Black
-        run: black --check .
+        run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}black --check .
       
       - name: Run MyPy
-        run: mypy src
+        run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}mypy src
 
   test:
     name: Test
@@ -66,6 +69,9 @@ jobs:
           {% if cookiecutter.dependency_manager == 'poetry' %}
           pip install poetry
           poetry install
+          {% elif cookiecutter.dependency_manager == 'uv' %}
+          pip install uv
+          uv sync
           {% else %}
           pip install -r requirements-dev.txt
           {% endif %}
@@ -73,11 +79,11 @@ jobs:
       - name: Run tests
         run: |
           {% if cookiecutter.testing_framework == 'pytest' %}
-          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=xml --cov-report=term
+          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=xml --cov-report=term
           {% else %}
-          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage run -m unittest discover -v -s tests -p "test_*.py"
-          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage xml
-          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage report
+          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage run -m unittest discover -v -s tests -p "test_*.py"
+          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage xml
+          {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage report
           {% endif %}
       
       - name: Upload coverage to Codecov
@@ -106,18 +112,23 @@ jobs:
           {% if cookiecutter.dependency_manager == 'poetry' %}
           pip install poetry
           poetry install
+          {% elif cookiecutter.dependency_manager == 'uv' %}
+          pip install uv
+          uv sync
           {% else %}
           pip install -r requirements-dev.txt
           {% endif %}
           pip install bandit safety
       
       - name: Run Bandit security scan
-        run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}bandit -r . -ll
+        run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run --with bandit {% endif %}bandit -r . -ll
       
       - name: Run Safety check
         run: |
           {% if cookiecutter.dependency_manager == 'poetry' %}
           poetry export -f requirements.txt --without-hashes -o requirements-export.txt && safety check --file requirements-export.txt
+          {% elif cookiecutter.dependency_manager == 'uv' %}
+          uv export --no-dev --no-hashes --output-file requirements-export.txt && safety check --file requirements-export.txt
           {% else %}
           safety check --file requirements.txt
           {% endif %}

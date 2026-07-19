@@ -25,6 +25,11 @@ RUN pip install --no-cache-dir poetry \
     && poetry config virtualenvs.create false \
     && poetry install --no-dev --no-root --no-interaction
 # dockerfile-utils: ignore
+{% elif cookiecutter.dependency_manager == 'uv' %}
+COPY pyproject.toml ./
+RUN pip install --no-cache-dir uv
+ENV PATH="/app/.venv/bin:$PATH"
+# dockerfile-utils: ignore
 {% else %}
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -33,6 +38,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY . .
+# dockerfile-utils: ignore
+{% if cookiecutter.dependency_manager == 'uv' %}
+RUN uv sync --no-dev
+# dockerfile-utils: ignore
+{% endif %}
 
 # Create non-root user
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
