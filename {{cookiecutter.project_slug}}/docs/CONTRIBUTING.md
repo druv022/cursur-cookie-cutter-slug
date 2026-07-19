@@ -26,6 +26,14 @@ poetry shell
 # Install pre-commit hooks
 pre-commit install
 ```
+{% elif cookiecutter.dependency_manager == 'uv' %}
+```bash
+# Create the environment and install all dependencies
+uv sync
+
+# Install pre-commit hooks in the managed environment
+uv run pre-commit install
+```
 {% else %}
 ```bash
 # Create virtual environment
@@ -74,7 +82,7 @@ feat: add user authentication endpoint
 ### Testing
 
 - Write tests for all new features
-- Ensure all tests pass: {% if cookiecutter.testing_framework == 'pytest' %}`pytest`{% else %}`python -m unittest discover -v -s tests`{% endif %}
+- Ensure all tests pass: {% if cookiecutter.dependency_manager == 'poetry' %}`poetry run {% elif cookiecutter.dependency_manager == 'uv' %}`uv run {% else %}`{% endif %}{% if cookiecutter.testing_framework == 'pytest' %}pytest`{% else %}python -m unittest discover -v -s tests`{% endif %}
 - Maintain or improve test coverage
 - Include both unit and integration tests where appropriate
 

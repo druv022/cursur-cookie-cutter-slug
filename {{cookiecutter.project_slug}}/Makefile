@@ -6,6 +6,13 @@ PIP := pip
 VENV := .venv
 PYTHON_VENV := $(VENV)/bin/python
 PIP_VENV := $(VENV)/bin/pip
+{% if cookiecutter.dependency_manager == 'poetry' %}
+RUNNER := poetry run
+{% elif cookiecutter.dependency_manager == 'uv' %}
+RUNNER := uv run
+{% else %}
+RUNNER :=
+{% endif %}
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -17,6 +24,8 @@ install: ## Install production dependencies
 	@echo "Installing production dependencies..."
 {% if cookiecutter.dependency_manager == 'poetry' %}
 	poetry install --no-dev
+{% elif cookiecutter.dependency_manager == 'uv' %}
+	uv sync --no-dev
 {% else %}
 	$(PIP) install -r requirements.txt
 {% endif %}
@@ -27,6 +36,11 @@ install-dev: ## Install development dependencies
 	poetry install
 	@if [ "{{ cookiecutter.use_pre_commit }}" = "y" ]; then \
 		poetry run pre-commit install; \
+	fi
+{% elif cookiecutter.dependency_manager == 'uv' %}
+	uv sync
+	@if [ "{{ cookiecutter.use_pre_commit }}" = "y" ]; then \
+		uv run pre-commit install; \
 	fi
 {% else %}
 	$(PIP) install -r requirements-dev.txt
@@ -39,6 +53,9 @@ venv: ## Create virtual environment
 	@echo "Creating virtual environment..."
 {% if cookiecutter.dependency_manager == 'poetry' %}
 	@echo "Using Poetry: run 'poetry shell' to activate."
+{% elif cookiecutter.dependency_manager == 'uv' %}
+	uv sync
+	@echo "uv created .venv. Run commands with 'uv run' or activate with: source $(VENV)/bin/activate"
 {% else %}
 	$(PYTHON) -m venv $(VENV)
 	@echo "Virtual environment created. Activate with: source $(VENV)/bin/activate"
@@ -47,31 +64,17 @@ venv: ## Create virtual environment
 test: ## Run tests
 	@echo "Running tests..."
 {% if cookiecutter.testing_framework == 'pytest' %}
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=term-missing --cov-report=html
+	$(RUNNER) pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=term-missing --cov-report=html
 {% else %}
-	pytest tests/ -v --cov={{ cookiecutter.project_slug }} --cov-report=term-missing --cov-report=html
-{% endif %}
-{% else %}
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run coverage run -m unittest discover -v -s tests -p "test_*.py"
-	poetry run coverage report
-	poetry run coverage html
-{% else %}
-	coverage run -m unittest discover -v -s tests -p "test_*.py"
-	coverage report
-	coverage html
-{% endif %}
+	$(RUNNER) coverage run -m unittest discover -v -s tests -p "test_*.py"
+	$(RUNNER) coverage report
+	$(RUNNER) coverage html
 {% endif %}
 
 test-watch: ## Run tests in watch mode (pytest only; unittest runs once)
 	@echo "Running tests in watch mode..."
 {% if cookiecutter.testing_framework == 'pytest' %}
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run pytest-watch tests/
-{% else %}
-	pytest-watch tests/
-{% endif %}
+	$(RUNNER) pytest-watch tests/
 {% else %}
 	@echo "Unittest: run 'make test' (watch not configured)."
 	$(MAKE) test
@@ -79,31 +82,17 @@ test-watch: ## Run tests in watch mode (pytest only; unittest runs once)
 
 lint: ## Run linters
 	@echo "Running linters..."
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run ruff check .
-	poetry run mypy src
-{% else %}
-	ruff check .
-	mypy src
-{% endif %}
+	$(RUNNER) ruff check .
+	$(RUNNER) mypy src
 
 format: ## Format code
 	@echo "Formatting code..."
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run black .
-	poetry run ruff check --fix .
-{% else %}
-	black .
-	ruff check --fix .
-{% endif %}
+	$(RUNNER) black .
+	$(RUNNER) ruff check --fix .
 
 type-check: ## Run type checker
 	@echo "Running type checker..."
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run mypy src
-{% else %}
-	mypy src
-{% endif %}
+	$(RUNNER) mypy src
 
 clean: ## Clean build artifacts
 	@echo "Cleaning..."
@@ -117,11 +106,7 @@ clean: ## Clean build artifacts
 
 run: ## Run the application
 	@echo "Running application..."
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run python -m {{ cookiecutter.project_slug }}.main
-{% else %}
-	python -m {{ cookiecutter.project_slug }}.main
-{% endif %}
+	$(RUNNER) python -m {{ cookiecutter.project_slug }}.main
 
 docker-build: ## Build Docker image
 	@echo "Building Docker image..."
@@ -140,9 +125,5 @@ docker-logs: ## View Docker logs
 
 pre-commit: ## Run pre-commit hooks on all files
 	@echo "Running pre-commit hooks..."
-{% if cookiecutter.dependency_manager == 'poetry' %}
-	poetry run pre-commit run --all-files
-{% else %}
-	pre-commit run --all-files
-{% endif %}
+	$(RUNNER) pre-commit run --all-files
 

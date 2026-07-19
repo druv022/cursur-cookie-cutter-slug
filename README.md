@@ -7,6 +7,7 @@ A cookiecutter template for creating Python projects optimized for Cursor IDE wi
 - **Python-focused**: Modern Python project structure with type hints
 - **Cursor IDE optimized**: Includes `.cursorrules` for AI-assisted development
 - **Best practices**: Pre-configured with modern tooling (Black, Ruff, MyPy, Pytest)
+- **Flexible environments**: Choose Poetry, uv, pip, or pip-tools for dependency management
 - **CI/CD ready**: GitHub Actions workflows included
 - **Docker support**: Development and production containers
 - **Pre-commit hooks**: Automated code quality checks
@@ -37,7 +38,7 @@ You'll be prompted for:
 - Author information
 - License
 - Python framework (Django, Flask, FastAPI, etc.)
-- Dependency manager
+- Dependency manager (Poetry, uv, pip, or pip-tools)
 - CI/CD preference
 - Testing framework
 - Documentation tool
@@ -60,8 +61,8 @@ You'll be prompted for:
     ├── tests/                  # Test suite
     ├── docs/                   # Documentation
     ├── pyproject.toml          # Python project config
-    ├── requirements.txt        # Production dependencies
-    ├── requirements-dev.txt   # Development dependencies
+    ├── requirements.txt        # Production dependencies (pip/pip-tools)
+    ├── requirements-dev.txt   # Development dependencies (pip/pip-tools)
     ├── Dockerfile             # Container configuration
     ├── docker-compose.yml     # Docker Compose setup
     ├── Makefile               # Development commands
@@ -110,6 +111,15 @@ You can customize the template by:
 4. Extending hooks for additional setup steps
 
 ## Template Development
+
+### Run the Template Tests
+
+```bash
+python -m pip install -r requirements-dev.txt
+pytest tests/ -v
+```
+
+The tests generate projects for every dependency-manager option and verify the uv configuration across supported CI providers.
 
 ### Working with GitHub Actions Syntax
 
@@ -184,16 +194,15 @@ cookiecutter .
 # project_name [My Awesome Project]: My Project
 # project_description [A scalable Python project...]: My description
 # python_framework [none]: fastapi
+# dependency_manager [poetry]: uv
 # ...
 
 # Navigate to the generated project
 cd my_project
 
-# Set up the environment
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-pre-commit install
+# Set up the uv-managed environment
+uv sync
+uv run pre-commit install
 
 # Start developing!
 ```

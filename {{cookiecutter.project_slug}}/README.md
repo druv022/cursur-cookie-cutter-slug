@@ -20,7 +20,7 @@
 ## Requirements
 
 - Python 3.10+
-- {% if cookiecutter.dependency_manager == 'poetry' %}Poetry for dependency management{% else %}pip or pip-tools for dependency management{% endif %}
+- {% if cookiecutter.dependency_manager == 'poetry' %}Poetry{% elif cookiecutter.dependency_manager == 'uv' %}uv{% else %}pip or pip-tools{% endif %} for dependency management
 
 ## Installation
 
@@ -45,6 +45,25 @@ poetry shell
 ### Alternative: using pip
 
 You can export a lockfile and use pip: `poetry export -f requirements.txt --output requirements.txt` then `pip install -r requirements.txt`.
+{% elif cookiecutter.dependency_manager == 'uv' %}
+### Using uv
+
+```bash
+# Clone the repository
+git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.git
+cd {{ cookiecutter.project_slug }}
+
+# Install uv if it is not already installed
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create the virtual environment, lock dependencies, and install development tools
+uv sync
+
+# Run the application inside the managed environment
+uv run python -m {{ cookiecutter.project_slug }}.main
+```
+
+Commit the generated `uv.lock` file to keep local, CI, and production installs reproducible.
 {% else %}
 ### Using pip
 
@@ -73,7 +92,7 @@ You can use Poetry by running `poetry init` and adding dependencies from `pyproj
 
 ```bash
 # Run the application
-python -m {{ cookiecutter.project_slug }}.main
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}python -m {{ cookiecutter.project_slug }}.main
 {% if cookiecutter.use_makefile == 'y' %}
 
 # Or using make
@@ -86,8 +105,8 @@ make run
 ### Setup
 
 1. Clone the repository
-2. {% if cookiecutter.dependency_manager == 'poetry' %}Install dependencies: `poetry install` and activate: `poetry shell`{% else %}Create a virtual environment and install development dependencies: `pip install -r requirements-dev.txt`{% endif %}
-3. Install pre-commit hooks: `pre-commit install`
+2. {% if cookiecutter.dependency_manager == 'poetry' %}Install dependencies: `poetry install` and activate: `poetry shell`{% elif cookiecutter.dependency_manager == 'uv' %}Install dependencies: `uv sync`{% else %}Create a virtual environment and install development dependencies: `pip install -r requirements-dev.txt`{% endif %}
+3. Install pre-commit hooks: `{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pre-commit install`
 4. Copy `.env.example` to `.env` and configure
 
 ### Running Tests
@@ -95,20 +114,20 @@ make run
 ```bash
 # Run all tests
 {% if cookiecutter.testing_framework == 'pytest' %}
-{% if cookiecutter.dependency_manager == 'poetry' %}poetry run pytest{% else %}pytest{% endif %}
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pytest
 
 # Run with coverage
-{% if cookiecutter.dependency_manager == 'poetry' %}poetry run pytest --cov={{ cookiecutter.project_slug }} --cov-report=html{% else %}pytest --cov={{ cookiecutter.project_slug }} --cov-report=html{% endif %}
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pytest --cov={{ cookiecutter.project_slug }} --cov-report=html
 
 # Run specific test file
-pytest tests/test_main.py
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pytest tests/test_main.py
 {% else %}
-{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}python -m unittest discover -v -s tests -p "test_*.py"
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}python -m unittest discover -v -s tests -p "test_*.py"
 
 # Run with coverage
-{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage run -m unittest discover -s tests -p "test_*.py"
-{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage report
-{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% endif %}coverage html
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage run -m unittest discover -s tests -p "test_*.py"
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage report
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}coverage html
 {% endif %}
 {% if cookiecutter.use_makefile == 'y' %}
 
@@ -121,11 +140,11 @@ make test
 
 ```bash
 # Format code
-black .
-ruff check --fix .
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}black .
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}ruff check --fix .
 
 # Type checking
-mypy src
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}mypy src
 {% if cookiecutter.use_makefile == 'y' %}
 
 # Run all checks
@@ -135,7 +154,7 @@ make type-check
 {% endif %}
 
 # Or use pre-commit
-pre-commit run --all-files
+{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pre-commit run --all-files
 ```
 
 {% if cookiecutter.use_docker == 'y' %}
@@ -189,7 +208,7 @@ make docker-up
 {% endif %}
 ├── .pre-commit-config.yaml
 ├── pyproject.toml
-{% if cookiecutter.dependency_manager != 'poetry' %}
+{% if cookiecutter.dependency_manager not in ['poetry', 'uv'] %}
 ├── requirements.txt
 ├── requirements-dev.txt
 {% endif %}
