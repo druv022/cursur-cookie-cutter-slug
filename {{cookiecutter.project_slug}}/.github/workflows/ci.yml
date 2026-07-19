@@ -121,7 +121,7 @@ jobs:
           pip install bandit safety
       
       - name: Run Bandit security scan
-        run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run --with bandit {% endif %}bandit -r . -ll
+        run: bandit -r . -ll
       
       - name: Run Safety check
         run: |
@@ -159,4 +159,3 @@ jobs:
         with:
           name: dist
           path: dist/
-

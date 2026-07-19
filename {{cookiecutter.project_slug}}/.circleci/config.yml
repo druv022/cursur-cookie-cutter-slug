@@ -69,11 +69,11 @@ jobs:
             {% if cookiecutter.dependency_manager == 'poetry' %}
             pip install poetry bandit safety && poetry install && poetry export -f requirements.txt --without-hashes -o requirements-export.txt
             {% elif cookiecutter.dependency_manager == 'uv' %}
-            pip install uv safety && uv sync && uv export --no-dev --no-hashes --output-file requirements-export.txt
+            pip install uv safety bandit && uv sync && uv export --no-dev --no-hashes --output-file requirements-export.txt
             {% else %}
             pip install -r requirements-dev.txt bandit safety
             {% endif %}
-      - run: {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run --with bandit {% endif %}bandit -r . -ll
+      - run: bandit -r . -ll
       - run: |
           {% if cookiecutter.dependency_manager == 'poetry' %}
           safety check --file requirements-export.txt

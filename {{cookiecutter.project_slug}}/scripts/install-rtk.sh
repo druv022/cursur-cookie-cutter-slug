@@ -10,7 +10,7 @@ if [[ -f "${ROOT_DIR}/RTK_VERSION" ]]; then
   PINNED="$(awk -F= '/^version=/{print $2; exit}' "${ROOT_DIR}/RTK_VERSION" || echo "${PINNED}")"
 fi
 
-echo "RTK installer (pinned ${PINNED})"
+echo "RTK installer (requested ${PINNED}; Homebrew/install.sh may install latest)"
 echo "Source: https://github.com/rtk-ai/rtk"
 echo ""
 

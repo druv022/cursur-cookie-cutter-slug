@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-import tomllib
 from pathlib import Path
 
 import pytest
 from cookiecutter.main import cookiecutter
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # pragma: no cover - Python >=3.11 has tomllib
+    tomllib = None
 
 TEMPLATE_ROOT = Path(__file__).resolve().parents[1]
 
@@ -77,10 +81,10 @@ def test_dependency_manager_variant(
     )
 
     pyproject_text = (output_path / "pyproject.toml").read_text(encoding="utf-8")
-    pyproject = tomllib.loads(pyproject_text)
     readme = (output_path / "README.md").read_text(encoding="utf-8")
 
-    assert pyproject
+    if tomllib is not None:
+        assert tomllib.loads(pyproject_text)
     assert config_heading in pyproject_text
     assert (output_path / "requirements.txt").exists() is requirements_expected
     assert (output_path / "requirements-dev.txt").exists() is requirements_expected
@@ -127,11 +131,11 @@ def test_uv_variant_uses_uv_across_development_surfaces(
 
 
 @pytest.mark.parametrize(
-    ("ci_cd", "config_path"),
+    ("ci_cd", "config_path", "expected_bandit_install"),
     [
-        ("github-actions", ".github/workflows/ci.yml"),
-        ("gitlab-ci", ".gitlab-ci.yml"),
-        ("circleci", ".circleci/config.yml"),
+        ("github-actions", ".github/workflows/ci.yml", "pip install bandit safety"),
+        ("gitlab-ci", ".gitlab-ci.yml", "pip install uv safety bandit"),
+        ("circleci", ".circleci/config.yml", "pip install uv safety bandit"),
     ],
 )
 def test_uv_variant_renders_selected_ci_pipeline(
@@ -139,6 +143,7 @@ def test_uv_variant_renders_selected_ci_pipeline(
     cookiecutter_config: Path,
     ci_cd: str,
     config_path: str,
+    expected_bandit_install: str,
 ) -> None:
     """Verify every supported CI provider uses the uv environment."""
     project_slug = f"uv_{ci_cd.replace('-', '_')}"
@@ -164,3 +169,7 @@ def test_uv_variant_renders_selected_ci_pipeline(
     assert "uv sync" in pipeline
     assert "uv run" in pipeline
     assert "uv export --no-dev" in pipeline
+    assert expected_bandit_install in pipeline
+    assert "bandit -r . -ll" in pipeline
+    assert "poetry run bandit" not in pipeline
+    assert "uv run --with bandit" not in pipeline

@@ -77,14 +77,14 @@ security:
     - poetry install
     - poetry export -f requirements.txt --without-hashes -o requirements-export.txt
     {% elif cookiecutter.dependency_manager == 'uv' %}
-    - pip install uv safety
+    - pip install uv safety bandit
     - uv sync
     - uv export --no-dev --no-hashes --output-file requirements-export.txt
     {% else %}
     - pip install -r requirements-dev.txt bandit safety
     {% endif %}
   script:
-    - {% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run --with bandit {% endif %}bandit -r . -ll
+    - bandit -r . -ll
     - |
       {% if cookiecutter.dependency_manager == 'poetry' %}
       safety check --file requirements-export.txt
