@@ -129,11 +129,13 @@ if [ "{{ cookiecutter.dependency_manager }}" = "poetry" ]; then
     echo "4. (Optional) Install pre-commit hooks: pre-commit install"
     echo "5. Update .env file with your configuration"
     {% if cookiecutter.testing_framework == 'pytest' %}echo "6. Run tests: poetry run pytest"{% else %}echo "6. Run tests: poetry run python -m unittest discover -v -s tests"{% endif %}
+    echo "7. Read docs/DEVELOPMENT.md for Cursor workflow and day-1 setup"
 elif [ "{{ cookiecutter.dependency_manager }}" = "uv" ]; then
     echo "2. Install dependencies: uv sync"
     echo "3. (Optional) Install pre-commit hooks: uv run pre-commit install"
     echo "4. Update .env file with your configuration"
     {% if cookiecutter.testing_framework == 'pytest' %}echo "5. Run tests: uv run pytest"{% else %}echo "5. Run tests: uv run python -m unittest discover -v -s tests"{% endif %}
+    echo "6. Read docs/DEVELOPMENT.md for Cursor workflow and day-1 setup"
 else
     echo "2. Create a virtual environment: python -m venv .venv"
     echo "3. Activate virtual environment: source .venv/bin/activate"
@@ -143,6 +145,7 @@ else
     fi
     echo "6. Update .env file with your configuration"
     {% if cookiecutter.testing_framework == 'pytest' %}echo "7. Run tests: pytest"{% else %}echo "7. Run tests: python -m unittest discover -v -s tests"{% endif %}
+    echo "8. Read docs/DEVELOPMENT.md for Cursor workflow and day-1 setup"
 fi
 echo ""
 echo "Happy coding!"

@@ -223,6 +223,8 @@ cd my_project
 uv sync
 uv run pre-commit install
 
+# Read docs/DEVELOPMENT.md for Cursor workflow, daily commands, and troubleshooting
+
 # Start developing!
 ```
 

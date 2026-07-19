@@ -1,0 +1,1 @@
+{"nodes": [{"id": "cursor_hooks_rtk_shell_rewrite", "label": "RTK pre-tool Shell rewrite hook", "file_type": "code", "source_file": "{{cookiecutter.project_slug}}/.cursor/hooks.json", "source_location": "lines 1-10", "source_url": "", "captured_at": "", "author": "", "contributor": ""}], "edges": [], "hyperedges": []}

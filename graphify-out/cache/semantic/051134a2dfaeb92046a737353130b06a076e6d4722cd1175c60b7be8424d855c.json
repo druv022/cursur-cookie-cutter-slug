@@ -1,0 +1,1 @@
+{"nodes": [{"id": "scripts_install_rtk_rtk_installer", "label": "RTK pinned installer script", "file_type": "code", "source_file": "{{cookiecutter.project_slug}}/scripts/install-rtk.sh", "source_location": "lines 1-76", "source_url": "https://github.com/rtk-ai/rtk", "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

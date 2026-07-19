@@ -1,0 +1,1 @@
+{"nodes": [{"id": "scripts_idea_refine_init_ideas_directory", "label": "idea-refine.sh (init docs/ideas)", "file_type": "code", "source_file": "{{cookiecutter.project_slug}}/.cursor/skills/idea-refine/scripts/idea-refine.sh", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

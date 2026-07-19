@@ -3,7 +3,7 @@
 
 {{ cookiecutter.project_description }}
 
-See ``ARCHITECTURE.md`` and ``CONTRIBUTING.md`` in this directory for architecture and contribution guidelines.
+See ``DEVELOPMENT.md``, ``ARCHITECTURE.md``, and ``CONTRIBUTING.md`` in this directory for post-generation setup, architecture, and contribution guidelines.
 
 Indices and tables
 ==================
