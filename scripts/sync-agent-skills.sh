@@ -14,6 +14,12 @@ LOCAL_SKILLS=(
   "rtk-token-optimization"
   "awesome-agentic-patterns"
   "graphify"
+  "ponytail"
+  "ponytail-audit"
+  "ponytail-debt"
+  "ponytail-gain"
+  "ponytail-help"
+  "ponytail-review"
 )
 
 cleanup() {
@@ -50,6 +56,12 @@ rsync -a --delete \
   --exclude 'rtk-token-optimization/' \
   --exclude 'awesome-agentic-patterns/' \
   --exclude 'graphify/' \
+  --exclude 'ponytail/' \
+  --exclude 'ponytail-audit/' \
+  --exclude 'ponytail-debt/' \
+  --exclude 'ponytail-gain/' \
+  --exclude 'ponytail-help/' \
+  --exclude 'ponytail-review/' \
   "${TMP_DIR}/agent-skills/skills/" \
   "${TEMPLATE_DIR}/.cursor/skills/"
 

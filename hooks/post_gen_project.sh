@@ -107,6 +107,9 @@ if [ -f "AGENT_SKILLS_VERSION" ]; then
     echo "  - Agent skills vendored (see AGENT_SKILLS_VERSION)"
 fi
 echo "  - Lifecycle commands: /spec /plan /build /test /review /code-simplify /ship /webperf"
+if [ -f "PONYTAIL_VERSION" ]; then
+    echo "  - Ponytail YAGNI mode: always-on (.cursor/rules/ponytail.mdc); /ponytail* commands (see PONYTAIL_VERSION)"
+fi
 echo "  - Agentic patterns: live fetch via .cursor/skills/awesome-agentic-patterns (agentic-patterns.com/llms.txt)"
 if command -v rtk >/dev/null 2>&1 && rtk gain >/dev/null 2>&1; then
     echo "  - RTK: active on PATH ($(rtk --version 2>/dev/null || echo rtk)); project hook .cursor/hooks.json is ready"

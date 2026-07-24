@@ -17,13 +17,16 @@ Before non-trivial technical work:
 - **Codebase architecture / file relationships / data flow / "how does X work?":** also load `.cursor/skills/graphify/SKILL.md`. When `graphify-out/graph.json` exists, run `graphify query` before broad repo reads (see `.cursor/rules/graphify.mdc`).
 - **Verbose shell / test / build / lint / git / docker output:** also load `.cursor/skills/rtk-token-optimization/SKILL.md` so commands stay token-efficient when RTK is available.
 - **Agentic applications / multi-agent systems / agent tooling / orchestration / memory / tool routing:** also load `.cursor/skills/awesome-agentic-patterns/SKILL.md` and **fetch the latest** catalogue (do not rely on memorized patterns) before proposing architecture.
+- **Minimal implementation / YAGNI / anti-over-engineering:** always-on via `.cursor/rules/ponytail.mdc`. On-demand: `/ponytail-review`, `/ponytail-audit`, `/ponytail-debt`, `/ponytail-gain`, `/ponytail-help`, or load `.cursor/skills/ponytail*/SKILL.md`.
 
 ## Project precedence
 
 These stack rules still win for this template's non-negotiables:
 
-- 100% unit-test coverage (`unit-testing-requirements`)
+- 100% unit-test coverage (`unit-testing-requirements`) — ponytail's "one runnable check" minimum is a floor for quick scripts, not a cap here
 - FastAPI / Python conventions (`py-fastapi-dev`, `python-dev-best-practices`)
 - Prompt logging to `PROMPTS.md` (`log-prompts`)
 - README updates and branch-per-change (`git-rules`)
 - How-to documentation style (`documentation`)
+
+Ponytail governs *how much* code to write (stdlib first, no speculative abstractions). Lifecycle skills govern *how* to spec, plan, build, and review. Use `/review` for correctness/security/performance; use `/ponytail-review` to hunt over-engineering and deletions.

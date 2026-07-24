@@ -64,9 +64,9 @@ This guide covers day-0 and day-1 work after Cookiecutter creates the project: e
 
 | Layer | Path | What it does |
 |-------|------|----------------|
-| Rules | `.cursor/rules/*.mdc` | Short policies; `agent-skills.mdc` is always on and routes work to skills |
-| Skills | `.cursor/skills/` | Detailed playbooks (spec, TDD, review, security, …) |
-| Commands | `.cursor/commands/` | Slash entry points: `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf` |
+| Rules | `.cursor/rules/*.mdc` | Short policies; `agent-skills.mdc` routes work to skills; `ponytail.mdc` enforces YAGNI/minimal code |
+| Skills | `.cursor/skills/` | Detailed playbooks (spec, TDD, review, security, ponytail, …) |
+| Commands | `.cursor/commands/` | Slash entry points: `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf` and `/ponytail*` |
 | Agents | `.cursor/agents/` | Optional specialist personas (used by `/ship`; not auto-loaded) |
 | References | `references/` | Checklists (definition of done, testing, security, performance) |
 | Hooks | `.cursor/hooks.json` | Optional Shell rewrite through RTK when installed |
@@ -84,7 +84,8 @@ For new features or greenfield work:
 2. `/plan` — break work into vertical tasks (`tasks/plan.md`, `tasks/todo.md`).
 3. `/build` — implement one task with tests (or `/build auto` after a real spec exists).
 4. `/review` — five-axis review of the change.
-5. `/ship` — launch readiness, specialist fan-out, and rollback plan.
+5. `/ponytail-review` — optional deletion-focused pass for over-engineering (complements `/review`).
+6. `/ship` — launch readiness, specialist fan-out, and rollback plan.
 
 Order is guidance, not a hard lock. Reordering is fine for small bugs (`/test` or `/build`), cleanup (`/code-simplify`), or a launch check on an existing branch (`/ship`). Skipping `/spec` before a non-trivial feature is costly: you get code without agreed acceptance criteria. `/build auto` stops if no spec is found at a known path (`SPEC.md`, `docs/SPEC.md`, or under `spec/`).
 
@@ -170,6 +171,16 @@ The project hook is fail-open: if RTK is missing, Shell commands still run.
 The always-on rule `.cursor/rules/graphify.mdc` tells agents to prefer `graphify query` over reading the whole tree when `graphify-out/graph.json` exists. See `.cursor/skills/graphify/SKILL.md`.
 
 Optional: set `GEMINI_API_KEY` before `make graph` for richer semantic extraction on markdown docs.
+
+## Ponytail (always on)
+
+[Ponytail](https://github.com/DietrichGebert/ponytail) ships as an always-on Cursor rule (`.cursor/rules/ponytail.mdc`) that pushes the agent toward minimal, necessary code: reuse existing helpers, prefer stdlib and native features, avoid speculative abstractions.
+
+- **Intensity:** `/ponytail lite|full|ultra|off` (default is full via the always-on rule)
+- **Review for bloat:** `/ponytail-review` on your diff, or `/ponytail-audit` for the whole repo
+- **Upstream pin:** `PONYTAIL_VERSION`
+
+Ponytail complements the lifecycle commands; it does not replace `/spec`, `/build`, or `/review`. This template's unit-test coverage rule still applies — ponytail minimizes implementation size, not test obligations.
 
 ## What the scaffold does not give you
 
