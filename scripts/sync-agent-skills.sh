@@ -13,6 +13,7 @@ TMP_DIR="$(mktemp -d)"
 LOCAL_SKILLS=(
   "rtk-token-optimization"
   "awesome-agentic-patterns"
+  "graphify"
 )
 
 cleanup() {
@@ -48,6 +49,7 @@ mkdir -p "${TEMPLATE_DIR}/references"
 rsync -a --delete \
   --exclude 'rtk-token-optimization/' \
   --exclude 'awesome-agentic-patterns/' \
+  --exclude 'graphify/' \
   "${TMP_DIR}/agent-skills/skills/" \
   "${TEMPLATE_DIR}/.cursor/skills/"
 

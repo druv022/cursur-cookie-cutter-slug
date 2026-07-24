@@ -5,7 +5,7 @@ A cookiecutter template for creating Python projects optimized for Cursor IDE wi
 ## Features
 
 - **Python-focused**: Modern Python project structure with type hints
-- **Cursor IDE optimized**: Project rules, 26 agent skills (addyosmani/agent-skills + RTK + agentic patterns), lifecycle slash commands, and optional RTK token compression
+- **Cursor IDE optimized**: Project rules, 26 agent skills (addyosmani/agent-skills + RTK + agentic patterns), lifecycle slash commands, optional RTK token compression, and **graphify** knowledge-graph tooling
 - **Best practices**: Pre-configured with modern tooling (Black, Ruff, MyPy, Pytest)
 - **Flexible environments**: Choose Poetry, uv, pip, or pip-tools for dependency management
 - **CI/CD ready**: GitHub Actions workflows included
@@ -56,8 +56,8 @@ You'll be prompted for:
 │   └── sync-agent-skills.sh   # Re-vendor addyosmani/agent-skills
 └── {{cookiecutter.project_slug}}/
     ├── .cursor/
-    │   ├── rules/             # Thin .mdc policies (incl. agent-skills router)
-    │   ├── skills/            # 24 upstream + RTK + agentic-patterns
+    │   ├── rules/             # Thin .mdc policies (incl. agent-skills router + graphify)
+    │   ├── skills/            # 24 upstream + RTK + agentic-patterns + graphify
     │   ├── commands/          # /spec /plan /build /test /review /…
     │   ├── agents/            # Optional review personas
     │   ├── hooks.json         # Project-local RTK preToolUse hook
@@ -66,6 +66,7 @@ You'll be prompted for:
     ├── AGENT_SKILLS_VERSION   # Pinned upstream ref/sha
     ├── RTK_VERSION
     ├── scripts/install-rtk.sh
+    ├── scripts/install-graphify.sh
     ├── .vscode/
     ├── src/
     ├── tests/

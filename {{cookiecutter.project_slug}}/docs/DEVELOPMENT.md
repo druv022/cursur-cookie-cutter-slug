@@ -70,6 +70,7 @@ This guide covers day-0 and day-1 work after Cookiecutter creates the project: e
 | Agents | `.cursor/agents/` | Optional specialist personas (used by `/ship`; not auto-loaded) |
 | References | `references/` | Checklists (definition of done, testing, security, performance) |
 | Hooks | `.cursor/hooks.json` | Optional Shell rewrite through RTK when installed |
+| graphify | `.cursor/rules/graphify.mdc` | Prefer `graphify query` for architecture questions when `graphify-out/graph.json` exists |
 
 Plain chat does **not** dump every skill into context or run the lifecycle for you. Always-on rules apply; the agent should load matching skills when relevant. For the designed workflow, **invoke the slash commands** yourself.
 
@@ -157,6 +158,19 @@ RTK compresses verbose CLI output so agent sessions keep more useful context.
 
 The project hook is fail-open: if RTK is missing, Shell commands still run.
 
+## Optional: graphify (knowledge graph)
+
+[graphify](https://pypi.org/project/graphifyy/) turns this repo into a queryable knowledge graph — useful for architecture questions, cross-file relationships, and onboarding.
+
+1. Run `./scripts/install-graphify.sh` (or `make graph-install`).
+2. Build the graph: `make graph` (writes `graphify-out/graph.html` and `GRAPH_REPORT.md`).
+3. Query: `make graph-query QUERY="How does the entry point work?"` or ask the agent **use graphify**.
+4. After editing code: `make graph-update` (AST-only, no API cost).
+
+The always-on rule `.cursor/rules/graphify.mdc` tells agents to prefer `graphify query` over reading the whole tree when `graphify-out/graph.json` exists. See `.cursor/skills/graphify/SKILL.md`.
+
+Optional: set `GEMINI_API_KEY` before `make graph` for richer semantic extraction on markdown docs.
+
 ## What the scaffold does not give you
 
 Treat the generated tree as a starting point, not a finished product:
@@ -176,6 +190,7 @@ Treat the generated tree as a starting point, not a finished product:
 | Import errors for the package | Install the project in editable mode via your dependency manager; keep the `src/` layout; run via `{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}python -m {{ cookiecutter.project_slug }}.main`. |
 | Pre-commit fails on commit | Run `{% if cookiecutter.dependency_manager == 'poetry' %}poetry run {% elif cookiecutter.dependency_manager == 'uv' %}uv run {% endif %}pre-commit run --all-files`, fix reported issues, commit again. |
 | `/build auto` stops immediately | Create a real spec first (`/spec` → `SPEC.md`). A README alone does not count. |
+| graphify query fails | Run `make graph-install && make graph` first. Confirm `graphify-out/graph.json` exists. |
 | Wrong repo / wrong tooling | You may still have the Cookiecutter template open. Close it and open the generated project folder. |
 | Docker run fails | Confirm the image installs the package and that `PYTHONPATH` / entrypoint match `src/`. |
 

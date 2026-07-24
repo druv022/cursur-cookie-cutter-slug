@@ -28,8 +28,11 @@ This project ships Cursor Agent configuration under `.cursor/`:
 | Commands | `.cursor/commands/` | Slash commands: `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf` |
 | References | `references/` | Shared checklists (definition of done, testing, security, …) |
 | RTK hook | `.cursor/hooks.json` | Fail-open Shell rewrite through RTK when installed |
+| graphify | `.cursor/rules/graphify.mdc` | Queryable codebase knowledge graph under `graphify-out/` |
 
 Greenfield flow: `/spec` → `/plan` → `/build` → `/review` → `/ship`.
+
+**Knowledge graph (graphify):** build a navigable map of code and docs with `make graph-install && make graph`, then query with `make graph-query QUERY="…"` or ask the agent **use graphify**. After code edits, `make graph-update` refreshes the AST layer cheaply. Outputs live in `graphify-out/` (gitignored). See `.cursor/skills/graphify/SKILL.md`.
 
 **Development guide:** after generation, follow [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for setup, Cursor workflow, daily commands, and troubleshooting.
 

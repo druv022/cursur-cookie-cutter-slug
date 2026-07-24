@@ -1,4 +1,4 @@
-.PHONY: help install install-dev test lint format type-check clean run docker-build docker-up docker-down
+.PHONY: help install install-dev test lint format type-check clean run docker-build docker-up docker-down graph-install graph graph-update graph-query
 
 # Variables
 PYTHON := python3
@@ -126,4 +126,23 @@ docker-logs: ## View Docker logs
 pre-commit: ## Run pre-commit hooks on all files
 	@echo "Running pre-commit hooks..."
 	$(RUNNER) pre-commit run --all-files
+
+graph-install: ## Install graphify CLI (./scripts/install-graphify.sh)
+	@./scripts/install-graphify.sh
+
+graph: ## Build knowledge graph (graphify-out/)
+	@command -v graphify >/dev/null 2>&1 || { echo "Run make graph-install first"; exit 1; }
+	graphify extract .
+	@echo "Open graphify-out/graph.html in a browser"
+
+graph-update: ## Incrementally update graph after code changes (AST-only)
+	@command -v graphify >/dev/null 2>&1 || { echo "Run make graph-install first"; exit 1; }
+	@test -f graphify-out/graph.json || { echo "Run make graph first"; exit 1; }
+	graphify update .
+
+graph-query: ## Query graph: make graph-query QUERY="How does X work?"
+	@command -v graphify >/dev/null 2>&1 || { echo "Run make graph-install first"; exit 1; }
+	@test -n "$(QUERY)" || { echo 'Usage: make graph-query QUERY="your question"'; exit 1; }
+	@test -f graphify-out/graph.json || { echo "Run make graph first"; exit 1; }
+	graphify query "$(QUERY)"
 

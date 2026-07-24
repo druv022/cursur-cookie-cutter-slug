@@ -142,3 +142,6 @@ logs/
 # CI-generated (e.g. poetry export for safety check)
 requirements-export.txt
 
+# graphify knowledge graph (regenerate with make graph)
+graphify-out/
+

@@ -14,6 +14,7 @@ Before non-trivial technical work:
 
 ## Project-local skills
 
+- **Codebase architecture / file relationships / data flow / "how does X work?":** also load `.cursor/skills/graphify/SKILL.md`. When `graphify-out/graph.json` exists, run `graphify query` before broad repo reads (see `.cursor/rules/graphify.mdc`).
 - **Verbose shell / test / build / lint / git / docker output:** also load `.cursor/skills/rtk-token-optimization/SKILL.md` so commands stay token-efficient when RTK is available.
 - **Agentic applications / multi-agent systems / agent tooling / orchestration / memory / tool routing:** also load `.cursor/skills/awesome-agentic-patterns/SKILL.md` and **fetch the latest** catalogue (do not rely on memorized patterns) before proposing architecture.
 

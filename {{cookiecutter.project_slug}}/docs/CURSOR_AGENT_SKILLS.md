@@ -23,6 +23,7 @@ Always-on rule: `.cursor/rules/agent-skills.mdc` → start with `.cursor/skills/
 
 - **`rtk-token-optimization`** — token-efficient shell via RTK; project hook in `.cursor/hooks.json`.
 - **`awesome-agentic-patterns`** — when building agentic apps, fetch latest from https://agentic-patterns.com/llms.txt and cite patterns (do not rely on memory).
+- **`graphify`** — build and query a knowledge graph of the repo (`make graph`, `graphify query`); always-on rule in `.cursor/rules/graphify.mdc`.
 
 ## Personas
 
