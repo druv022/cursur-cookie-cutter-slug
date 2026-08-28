@@ -1,0 +1,248 @@
+{
+  "version": 1,
+  "preserve_local": [
+    "rtk-token-optimization",
+    "awesome-agentic-patterns",
+    "graphify"
+  ],
+  "global_rename": {
+    "test-driven-development": "superpowers-test-driven-development",
+    "tdd": "mp-tdd",
+    "code-review": "mp-code-review"
+  },
+  "skip_if_exists": [
+    "webapp-testing"
+  ],
+  "sources": [
+    {
+      "id": "addyosmani-agent-skills",
+      "repo": "https://github.com/addyosmani/agent-skills.git",
+      "ref": "0.6.4",
+      "license_note": "MIT",
+      "install": {
+        "type": "full-tree",
+        "skills_path": "skills",
+        "references_path": "references",
+        "agents_path": "agents",
+        "commands_path": ".claude/commands",
+        "commands_format": "claude-md"
+      }
+    },
+    {
+      "id": "ponytail",
+      "repo": "https://github.com/DietrichGebert/ponytail.git",
+      "ref": "v4.8.4",
+      "license_note": "MIT",
+      "install": {
+        "type": "ponytail",
+        "rules_path": ".cursor/rules/ponytail.mdc",
+        "skills_glob": "skills/ponytail*",
+        "commands_path": "commands",
+        "commands_format": "toml"
+      }
+    },
+    {
+      "id": "superpowers",
+      "repo": "https://github.com/obra/superpowers.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "allowlist",
+        "skills_path": "skills"
+      },
+      "skills": [
+        "brainstorming",
+        "writing-plans",
+        "executing-plans",
+        "subagent-driven-development",
+        "test-driven-development",
+        "systematic-debugging",
+        "verification-before-completion",
+        "using-superpowers",
+        "using-git-worktrees",
+        "dispatching-parallel-agents",
+        "requesting-code-review",
+        "receiving-code-review",
+        "finishing-a-development-branch",
+        "writing-skills"
+      ],
+      "rename": {
+        "test-driven-development": "superpowers-test-driven-development"
+      }
+    },
+    {
+      "id": "anthropics-skills",
+      "repo": "https://github.com/anthropics/skills.git",
+      "ref": "main",
+      "license_note": "Apache-2.0 (OSS skills only; docx/pdf/pptx/xlsx are source-available and excluded)",
+      "install": {
+        "type": "allowlist",
+        "skills_path": "skills"
+      },
+      "skills": [
+        "skill-creator",
+        "mcp-builder",
+        "frontend-design",
+        "webapp-testing",
+        "doc-coauthoring",
+        "theme-factory",
+        "brand-guidelines",
+        "canvas-design",
+        "internal-comms",
+        "web-artifacts-builder",
+        "algorithmic-art"
+      ],
+      "skip": ["docx", "pdf", "pptx", "xlsx"]
+    },
+    {
+      "id": "awesome-claude-skills",
+      "repo": "https://github.com/ComposioHQ/awesome-claude-skills.git",
+      "ref": "master",
+      "license_note": "Mixed; see upstream README per skill",
+      "install": {
+        "type": "allowlist",
+        "skills_path": "."
+      },
+      "skills": [
+        "artifacts-builder",
+        "changelog-generator",
+        "connect-apps"
+      ],
+      "skip_if_exists": ["webapp-testing"]
+    },
+    {
+      "id": "mattpocock-skills",
+      "repo": "https://github.com/mattpocock/skills.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "allowlist",
+        "skills_path": "skills/engineering"
+      },
+      "skills": [
+        "grill-with-docs",
+        "diagnosing-bugs",
+        "tdd",
+        "improve-codebase-architecture",
+        "to-spec",
+        "implement",
+        "code-review",
+        "domain-modeling",
+        "setup-matt-pocock-skills",
+        "ask-matt",
+        "to-tickets",
+        "triage"
+      ],
+      "rename": {
+        "tdd": "mp-tdd",
+        "code-review": "mp-code-review"
+      }
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "composite",
+        "components": [
+          {
+            "source_path": ".claude/skills/ui-ux-pro-max",
+            "target_name": "ui-ux-pro-max"
+          },
+          {
+            "source_path": "src",
+            "target_path": ".cursor/skills/ui-ux-pro-max/src"
+          }
+        ]
+      }
+    },
+    {
+      "id": "taste-skill",
+      "repo": "https://github.com/leonxlnx/taste-skill.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "allowlist",
+        "skills_path": "skills"
+      },
+      "skills": ["taste-skill"],
+      "extra_paths": [
+        {
+          "source": "assets",
+          "target": ".cursor/skills/taste-skill/assets"
+        }
+      ]
+    },
+    {
+      "id": "karpathy-guidelines",
+      "repo": "https://github.com/multica-ai/andrej-karpathy-skills.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "rule-and-skill",
+        "rule_source": ".cursor/rules/karpathy-guidelines.mdc",
+        "rule_target": ".cursor/rules/karpathy-guidelines.mdc",
+        "skill_source": "skills/karpathy-guidelines",
+        "skill_target": "karpathy-guidelines"
+      }
+    },
+    {
+      "id": "i-have-adhd",
+      "repo": "https://github.com/ayghri/i-have-adhd.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "rule-and-skill",
+        "rule_target": ".cursor/rules/i-have-adhd.mdc",
+        "skill_source": "skills/i-have-adhd",
+        "skill_target": "i-have-adhd"
+      }
+    },
+    {
+      "id": "caveman",
+      "repo": "https://github.com/JuliusBrussee/caveman.git",
+      "ref": "main",
+      "license_note": "MIT",
+      "install": {
+        "type": "allowlist",
+        "skills_path": "skills"
+      },
+      "skills": ["caveman"]
+    }
+  ],
+  "reference_catalogs": [
+    {
+      "id": "anthropics-skills-full",
+      "repo": "https://github.com/anthropics/skills",
+      "description": "Full Anthropic skills catalog (curated subset vendored; doc skills source-available only)"
+    },
+    {
+      "id": "awesome-claude-skills-full",
+      "repo": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "description": "Community Claude skills index (curated subset vendored)"
+    }
+  ],
+  "template_commands": [
+    {
+      "name": "brainstorm",
+      "description": "Structured design exploration before coding",
+      "skill": "brainstorming"
+    },
+    {
+      "name": "grill-with-docs",
+      "description": "Alignment interview that builds CONTEXT.md and ADRs",
+      "skill": "grill-with-docs"
+    },
+    {
+      "name": "caveman",
+      "description": "Opt-in ultra-compressed token-saving reply mode",
+      "skill": "caveman"
+    },
+    {
+      "name": "update-skills",
+      "description": "Re-vendor agent skills from upstream GitHub repos",
+      "script": "scripts/update-skills.sh"
+    }
+  ]
+}

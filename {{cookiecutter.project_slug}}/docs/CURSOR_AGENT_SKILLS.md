@@ -1,14 +1,24 @@
 # Cursor agent skills
 
-This project vendors [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) under `.cursor/skills/` plus local skills. See `AGENT_SKILLS_VERSION` for the upstream pin.
+This project vendors a **curated multi-upstream skills bundle** under `.cursor/skills/`. Pins and SHAs live in `SKILLS_LOCK.json` (legacy: `AGENT_SKILLS_VERSION`, `PONYTAIL_VERSION`).
 
-[Ponytail](https://github.com/DietrichGebert/ponytail) (lazy senior dev / YAGNI mode) ships as an always-on rule (`.cursor/rules/ponytail.mdc`), six skills, and slash commands. See `PONYTAIL_VERSION` for the upstream pin.
+To refresh from upstream: `./scripts/update-skills.sh`, `make update-skills`, or `/update-skills` in Cursor.
 
-## Routing
+See also: [references/skills-upstream-catalog.md](../references/skills-upstream-catalog.md), [references/skills-licenses.md](../references/skills-licenses.md).
 
-Always-on rules: `.cursor/rules/agent-skills.mdc` (skill router) and `.cursor/rules/ponytail.mdc` (minimal implementation). Start lifecycle work with `.cursor/skills/using-agent-skills/SKILL.md`, then the phase-matched skill.
+## Always-on rules
 
-## Lifecycle (slash commands)
+| Rule | Source | Purpose |
+|------|--------|---------|
+| `agent-skills.mdc` | Template | Skill router and precedence |
+| `ponytail.mdc` | [Ponytail](https://github.com/DietrichGebert/ponytail) | YAGNI / minimal code |
+| `karpathy-guidelines.mdc` | [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | Think first, surgical diffs |
+| `i-have-adhd.mdc` | [i-have-adhd](https://github.com/ayghri/i-have-adhd) | Action-first output formatting |
+| `graphify.mdc` | Template | Knowledge-graph queries |
+
+**Precedence:** template non-negotiables → ponytail → karpathy → i-have-adhd → domain skills.
+
+## Lifecycle (addyosmani — primary)
 
 | Command | Primary skill(s) |
 |---------|------------------|
@@ -21,28 +31,91 @@ Always-on rules: `.cursor/rules/agent-skills.mdc` (skill router) and `.cursor/ru
 | `/ship` | `shipping-and-launch` |
 | `/webperf` | `performance-optimization` |
 
-## Ponytail (minimal implementation)
+Use addyosmani lifecycle by default. Superpowers skills below complement autonomous / subagent workflows.
 
-Always-on: `.cursor/rules/ponytail.mdc` enforces the YAGNI ladder (reuse → stdlib → native → one line → minimum code).
+## Superpowers ([obra/superpowers](https://github.com/obra/superpowers))
+
+| Skill | Use when |
+|-------|----------|
+| `brainstorming` | `/brainstorm` — design before code |
+| `writing-plans` | Detailed implementation plans |
+| `executing-plans` | Batch plan execution |
+| `subagent-driven-development` | Parallel subagent tasks |
+| `superpowers-test-driven-development` | Red/green TDD (superpowers variant) |
+| `systematic-debugging` | Root-cause debugging |
+| `verification-before-completion` | Prove work before claiming done |
+| `using-superpowers` | Meta: how superpowers skills chain |
+| `using-git-worktrees` | Isolated worktrees |
+| `dispatching-parallel-agents` | Parallel agent dispatch |
+| `requesting-code-review` / `receiving-code-review` | Review workflows |
+| `finishing-a-development-branch` | Branch completion |
+| `writing-skills` | Author new skills |
+
+## Matt Pocock ([mattpocock/skills](https://github.com/mattpocock/skills))
+
+| Command / skill | Purpose |
+|-----------------|---------|
+| `/grill-with-docs` → `grill-with-docs` | Alignment interview + CONTEXT.md / ADRs |
+| `diagnosing-bugs` | Disciplined debug loop |
+| `mp-tdd` | Red-green-refactor TDD |
+| `improve-codebase-architecture` | Architecture deepening survey |
+| `to-spec`, `implement`, `to-tickets`, `triage`, `ask-matt` | Spec and delivery helpers |
+| `mp-code-review`, `domain-modeling` | Review and domain language |
+| `setup-matt-pocock-skills` | One-time project setup |
+
+## Design and UI
+
+| Skill | Source |
+|-------|--------|
+| `taste-skill` | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) |
+| `ui-ux-pro-max` | [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) |
+| `frontend-design` | [anthropics/skills](https://github.com/anthropics/skills) |
+| `frontend-ui-engineering` | addyosmani |
+
+## Anthropic OSS skills ([anthropics/skills](https://github.com/anthropics/skills))
+
+Curated subset: `skill-creator`, `mcp-builder`, `webapp-testing`, `doc-coauthoring`, `theme-factory`, `brand-guidelines`, `canvas-design`, `internal-comms`, `web-artifacts-builder`, `algorithmic-art`.
+
+**Not vendored:** `docx`, `pdf`, `pptx`, `xlsx` (source-available only).
+
+## Community ([awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills))
+
+`artifacts-builder`, `changelog-generator`, `connect-apps` (curated subset).
+
+## Communication modes
+
+| Mode | How |
+|------|-----|
+| Default | Karpathy + i-have-adhd (always-on rules) |
+| `/caveman` | Opt-in ultra-compressed replies ([caveman](https://github.com/JuliusBrussee/caveman)) |
+| Ponytail | Always-on minimal code; `/ponytail*` for intensity and audits |
+
+## Ponytail
 
 | Command | Skill | Purpose |
 |---------|-------|---------|
 | `/ponytail` | `ponytail` | Set intensity (`lite` / `full` / `ultra` / `off`) |
-| `/ponytail-review` | `ponytail-review` | Review diff for over-engineering; what to delete |
+| `/ponytail-review` | `ponytail-review` | Over-engineering review of diff |
 | `/ponytail-audit` | `ponytail-audit` | Repo-wide over-engineering audit |
 | `/ponytail-debt` | `ponytail-debt` | Track deferred simplifications |
-| `/ponytail-gain` | `ponytail-gain` | Show benchmark impact summary |
+| `/ponytail-gain` | `ponytail-gain` | Benchmark impact summary |
 | `/ponytail-help` | `ponytail-help` | Command reference |
 
-Use `/review` for correctness, security, and performance. Use `/ponytail-review` when you want a deletion-focused pass. Template unit-test coverage rules still apply alongside ponytail.
+## Local / template skills (preserved on sync)
 
-## Local skills
+- **`rtk-token-optimization`** — RTK shell compression; hook in `.cursor/hooks.json`
+- **`awesome-agentic-patterns`** — live-fetch [agentic-patterns.com/llms.txt](https://agentic-patterns.com/llms.txt)
+- **`graphify`** — repo knowledge graph (`make graph`, `graphify query`)
 
-- **`rtk-token-optimization`** — token-efficient shell via RTK; project hook in `.cursor/hooks.json`.
-- **`awesome-agentic-patterns`** — when building agentic apps, fetch latest from https://agentic-patterns.com/llms.txt and cite patterns (do not rely on memory).
-- **`graphify`** — build and query a knowledge graph of the repo (`make graph`, `graphify query`); always-on rule in `.cursor/rules/graphify.mdc`.
-- **`ponytail*`** — vendored from DietrichGebert/ponytail; preserved when re-syncing agent-skills.
+## Maintenance
+
+| Command | Action |
+|---------|--------|
+| `/update-skills` | Run `./scripts/update-skills.sh` |
+| Edit allowlist | `scripts/skills-manifest.json` then update |
+
+Template maintainers run `./scripts/sync-skills.sh` from the cookiecutter repo root.
 
 ## Personas
 
-Optional paste-in personas live under `.cursor/agents/` (not auto-loaded).
+Optional paste-in personas under `.cursor/agents/` (not auto-loaded).

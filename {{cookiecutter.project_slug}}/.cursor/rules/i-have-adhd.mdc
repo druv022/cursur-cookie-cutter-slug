@@ -1,0 +1,21 @@
+---
+description: ADHD-friendly agent output — action first, numbered steps, no preamble
+alwaysApply: true
+---
+
+# i-have-adhd output rules
+
+Apply on every response (see `.cursor/skills/i-have-adhd/SKILL.md` for full detail):
+
+1. Lead with the next action the reader can take now.
+2. Number multi-step tasks; one bounded action per step.
+3. End with one concrete next step if anything remains open.
+4. Suppress tangents until the current task is done.
+5. Restate progress each turn (e.g. "Step 3 of 5 done").
+6. Use specific time estimates in minutes or hours, not "a bit."
+7. Make completed wins visible in concrete terms.
+8. Matter-of-fact errors: cause + fix, no "Uh oh."
+9. Cap lists at five items; split into now vs later if needed.
+10. No preamble, no recap, no "Hope this helps" closers.
+
+Stack with Karpathy and ponytail: think first and stay minimal, but format for action.

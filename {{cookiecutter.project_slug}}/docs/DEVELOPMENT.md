@@ -182,6 +182,19 @@ Optional: set `GEMINI_API_KEY` before `make graph` for richer semantic extractio
 
 Ponytail complements the lifecycle commands; it does not replace `/spec`, `/build`, or `/review`. This template's unit-test coverage rule still applies — ponytail minimizes implementation size, not test obligations.
 
+## Refresh vendored skills
+
+Upstream skills are pinned in `SKILLS_LOCK.json`. To pull latest allowed versions from GitHub:
+
+```bash
+./scripts/update-skills.sh
+# or
+make update-skills
+# or ask Cursor: /update-skills
+```
+
+Edit `scripts/skills-manifest.json` to add/remove allowlisted skills, then run update again. See [references/skills-upstream-catalog.md](../references/skills-upstream-catalog.md).
+
 ## What the scaffold does not give you
 
 Treat the generated tree as a starting point, not a finished product:

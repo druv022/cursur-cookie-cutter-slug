@@ -1,0 +1,178 @@
+{
+  "synced_at": "2026-08-28T16:59:42Z",
+  "sources": {
+    "addyosmani-agent-skills": {
+      "ref": "0.6.4",
+      "sha": "98967c45a42b88d6b8fb3a88b7ff6273920763d6",
+      "describe": "0.6.4",
+      "repo": "https://github.com/addyosmani/agent-skills.git",
+      "skills": [
+        "idea-refine",
+        "debugging-and-error-recovery",
+        "using-agent-skills",
+        "test-driven-development",
+        "planning-and-task-breakdown",
+        "incremental-implementation",
+        "api-and-interface-design",
+        "ci-cd-and-automation",
+        "context-engineering",
+        "frontend-ui-engineering",
+        "shipping-and-launch",
+        "spec-driven-development",
+        "code-review-and-quality",
+        "security-and-hardening",
+        "deprecation-and-migration",
+        "observability-and-instrumentation",
+        "interview-me",
+        "code-simplification",
+        "doubt-driven-development",
+        "source-driven-development",
+        "performance-optimization",
+        "browser-testing-with-devtools",
+        "git-workflow-and-versioning",
+        "documentation-and-adrs"
+      ],
+      "skill_count": 24
+    },
+    "ponytail": {
+      "ref": "v4.8.4",
+      "sha": "bc9ee949d5f439e8b9f3bb92c6d6d3d1e6ebd324",
+      "describe": "v4.8.4",
+      "repo": "https://github.com/DietrichGebert/ponytail.git",
+      "skills": [
+        "ponytail",
+        "ponytail-audit",
+        "ponytail-help",
+        "ponytail-review",
+        "ponytail-gain",
+        "ponytail-debt"
+      ],
+      "skill_count": 6
+    },
+    "superpowers": {
+      "ref": "main",
+      "sha": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "describe": "v6.3.0",
+      "repo": "https://github.com/obra/superpowers.git",
+      "skills": [
+        "brainstorming",
+        "writing-plans",
+        "executing-plans",
+        "subagent-driven-development",
+        "superpowers-test-driven-development",
+        "systematic-debugging",
+        "verification-before-completion",
+        "using-superpowers",
+        "using-git-worktrees",
+        "dispatching-parallel-agents",
+        "requesting-code-review",
+        "receiving-code-review",
+        "finishing-a-development-branch",
+        "writing-skills"
+      ],
+      "skill_count": 14
+    },
+    "anthropics-skills": {
+      "ref": "main",
+      "sha": "3b3fad96af16a10759d930941b4520ba0c40edae",
+      "describe": "3b3fad9",
+      "repo": "https://github.com/anthropics/skills.git",
+      "skills": [
+        "skill-creator",
+        "mcp-builder",
+        "frontend-design",
+        "doc-coauthoring",
+        "theme-factory",
+        "brand-guidelines",
+        "canvas-design",
+        "internal-comms",
+        "web-artifacts-builder",
+        "algorithmic-art"
+      ],
+      "skill_count": 10
+    },
+    "awesome-claude-skills": {
+      "ref": "master",
+      "sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
+      "describe": "be2a406",
+      "repo": "https://github.com/ComposioHQ/awesome-claude-skills.git",
+      "skills": [
+        "artifacts-builder",
+        "changelog-generator",
+        "connect-apps"
+      ],
+      "skill_count": 3
+    },
+    "mattpocock-skills": {
+      "ref": "main",
+      "sha": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+      "describe": "6654f6b",
+      "repo": "https://github.com/mattpocock/skills.git",
+      "skills": [
+        "grill-with-docs",
+        "diagnosing-bugs",
+        "mp-tdd",
+        "improve-codebase-architecture",
+        "to-spec",
+        "implement",
+        "mp-code-review",
+        "domain-modeling",
+        "setup-matt-pocock-skills",
+        "ask-matt",
+        "to-tickets",
+        "triage"
+      ],
+      "skill_count": 12
+    },
+    "ui-ux-pro-max": {
+      "ref": "main",
+      "sha": "8bd29e775453ebcae52b6e6514fbf134df0c5770",
+      "describe": "8bd29e7",
+      "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+      "skills": [
+        "ui-ux-pro-max"
+      ],
+      "skill_count": 1
+    },
+    "taste-skill": {
+      "ref": "main",
+      "sha": "ccbc15639c97057cbfcf32ecebc38ef716e4bb37",
+      "describe": "ccbc156",
+      "repo": "https://github.com/leonxlnx/taste-skill.git",
+      "skills": [
+        "taste-skill"
+      ],
+      "skill_count": 1
+    },
+    "karpathy-guidelines": {
+      "ref": "main",
+      "sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+      "describe": "2c60614",
+      "repo": "https://github.com/multica-ai/andrej-karpathy-skills.git",
+      "skills": [
+        "karpathy-guidelines"
+      ],
+      "skill_count": 1
+    },
+    "i-have-adhd": {
+      "ref": "main",
+      "sha": "cbe69fb83c08a37cf54d5ec9ec6bb88c8bc9973c",
+      "describe": "cbe69fb",
+      "repo": "https://github.com/ayghri/i-have-adhd.git",
+      "skills": [
+        "i-have-adhd"
+      ],
+      "skill_count": 1
+    },
+    "caveman": {
+      "ref": "main",
+      "sha": "17f9f2ec2377b0bfe16b52ee03a462e7f0a02bc8",
+      "describe": "17f9f2e",
+      "repo": "https://github.com/JuliusBrussee/caveman.git",
+      "skills": [
+        "caveman"
+      ],
+      "skill_count": 1
+    }
+  }
+}

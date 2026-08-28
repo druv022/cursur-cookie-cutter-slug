@@ -12,12 +12,31 @@ Before non-trivial technical work:
 3. Open files under `references/` when a skill links them.
 4. Prefer project skills over guessing; the user does not need to say "read skill" each time.
 
+## Rule precedence (stack order)
+
+When guidance conflicts, higher items win:
+
+1. Template non-negotiables: unit-test coverage, FastAPI/Python conventions, prompt logging, git-rules, documentation style
+2. Ponytail YAGNI (`.cursor/rules/ponytail.mdc`) — minimal code, stdlib first
+3. Karpathy guidelines (`.cursor/rules/karpathy-guidelines.mdc`) — think first, surgical diffs, simplicity
+4. i-have-adhd output (`.cursor/rules/i-have-adhd.mdc`) — action-first formatting, numbered steps
+5. Lifecycle and domain skills (addyosmani, superpowers, mattpocock, anthropic, etc.)
+
+Caveman (`.cursor/skills/caveman/`) is opt-in via `/caveman` only; it overrides verbose tone for the session, not code quality rules.
+
 ## Project-local skills
 
 - **Codebase architecture / file relationships / data flow / "how does X work?":** also load `.cursor/skills/graphify/SKILL.md`. When `graphify-out/graph.json` exists, run `graphify query` before broad repo reads (see `.cursor/rules/graphify.mdc`).
 - **Verbose shell / test / build / lint / git / docker output:** also load `.cursor/skills/rtk-token-optimization/SKILL.md` so commands stay token-efficient when RTK is available.
 - **Agentic applications / multi-agent systems / agent tooling / orchestration / memory / tool routing:** also load `.cursor/skills/awesome-agentic-patterns/SKILL.md` and **fetch the latest** catalogue (do not rely on memorized patterns) before proposing architecture.
 - **Minimal implementation / YAGNI / anti-over-engineering:** always-on via `.cursor/rules/ponytail.mdc`. On-demand: `/ponytail-review`, `/ponytail-audit`, `/ponytail-debt`, `/ponytail-gain`, `/ponytail-help`, or load `.cursor/skills/ponytail*/SKILL.md`.
+- **Ambiguous requirements / design before code:** `brainstorming` (superpowers), `interview-me`, or `/grill-with-docs` → `grill-with-docs`.
+- **UI / design quality:** `taste-skill`, `ui-ux-pro-max`, `frontend-design`, `frontend-ui-engineering`.
+- **Deep debugging:** `systematic-debugging` (superpowers) or `diagnosing-bugs` (mattpocock).
+- **Architecture survey:** `improve-codebase-architecture`.
+- **Autonomous multi-step execution:** `subagent-driven-development`, `executing-plans`, `writing-plans` (superpowers).
+- **Token-compressed replies:** `/caveman` → `caveman` skill (session opt-in).
+- **Refresh vendored skills:** `/update-skills` → run `./scripts/update-skills.sh`.
 
 ## Project precedence
 
@@ -29,4 +48,4 @@ These stack rules still win for this template's non-negotiables:
 - README updates and branch-per-change (`git-rules`)
 - How-to documentation style (`documentation`)
 
-Ponytail governs *how much* code to write (stdlib first, no speculative abstractions). Lifecycle skills govern *how* to spec, plan, build, and review. Use `/review` for correctness/security/performance; use `/ponytail-review` to hunt over-engineering and deletions.
+Ponytail governs *how much* code to write (stdlib first, no speculative abstractions). Lifecycle skills govern *how* to spec, plan, build, and review. Use `/review` for correctness/security/performance; use `/ponytail-review` to hunt over-engineering and deletions. Default lifecycle: addyosmani `/spec` → `/plan` → `/build` → `/review` → `/ship`; use superpowers skills when running subagent-driven or autonomous plan execution.

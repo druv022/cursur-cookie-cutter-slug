@@ -15,7 +15,7 @@
 {% if cookiecutter.ci_cd != 'none' %}
 - CI/CD pipelines ({% if cookiecutter.ci_cd == 'github-actions' %}GitHub Actions{% elif cookiecutter.ci_cd == 'gitlab-ci' %}GitLab CI{% elif cookiecutter.ci_cd == 'circleci' %}CircleCI{% endif %})
 {% endif %}
-- Cursor IDE optimized: agent skills, lifecycle slash commands, Ponytail YAGNI mode, and optional RTK token compression
+- Cursor IDE optimized: multi-upstream agent skills, lifecycle slash commands, Ponytail YAGNI, Karpathy + i-have-adhd output rules, and optional RTK compression
 
 ## Cursor / AI tooling
 
@@ -23,16 +23,20 @@ This project ships Cursor Agent configuration under `.cursor/`:
 
 | Layer | Path | Purpose |
 |-------|------|---------|
-| Rules | `.cursor/rules/*.mdc` | Short always-on / file-scoped policies; `agent-skills.mdc` routes work; `ponytail.mdc` enforces minimal code |
-| Skills | `.cursor/skills/` | Lifecycle workflows (addyosmani/agent-skills) + local RTK, agentic-patterns, and ponytail skills |
-| Commands | `.cursor/commands/` | Slash commands: `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf` and `/ponytail*` |
+| Rules | `.cursor/rules/*.mdc` | Router, ponytail, karpathy, i-have-adhd, graphify |
+| Skills | `.cursor/skills/` | addyosmani lifecycle + superpowers, mattpocock, anthropic, UI/taste, local RTK/graphify/agentic |
+| Commands | `.cursor/commands/` | `/spec` … `/ship`, `/brainstorm`, `/grill-with-docs`, `/caveman`, `/update-skills`, `/ponytail*` |
 | References | `references/` | Shared checklists (definition of done, testing, security, …) |
 | RTK hook | `.cursor/hooks.json` | Fail-open Shell rewrite through RTK when installed |
 | graphify | `.cursor/rules/graphify.mdc` | Queryable codebase knowledge graph under `graphify-out/` |
 
-Greenfield flow: `/spec` → `/plan` → `/build` → `/review` → `/ship`. Optional: `/ponytail-review` to hunt over-engineering before merge.
+Greenfield flow: `/spec` → `/plan` → `/build` → `/review` → `/ship`. Optional: `/brainstorm`, `/grill-with-docs`, `/ponytail-review`.
 
-**Ponytail:** always-on YAGNI mode from [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail). See `PONYTAIL_VERSION`. Use `/ponytail lite|full|ultra|off` to adjust intensity; `/ponytail-review` and `/ponytail-audit` for deletion-focused reviews.
+**Skills lock:** see `SKILLS_LOCK.json`. Refresh vendored skills with `./scripts/update-skills.sh`, `make update-skills`, or `/update-skills`.
+
+**Communication stack:** always-on [Karpathy guidelines](https://github.com/multica-ai/andrej-karpathy-skills) + [i-have-adhd](https://github.com/ayghri/i-have-adhd) output rules. Opt-in token compression: `/caveman`.
+
+**Ponytail:** always-on YAGNI mode from [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail). See `SKILLS_LOCK.json` (legacy `PONYTAIL_VERSION`). Use `/ponytail lite|full|ultra|off`; `/ponytail-review` and `/ponytail-audit` for deletion-focused reviews.
 
 **Knowledge graph (graphify):** build a navigable map of code and docs with `make graph-install && make graph`, then query with `make graph-query QUERY="…"` or ask the agent **use graphify**. After code edits, `make graph-update` refreshes the AST layer cheaply. Outputs live in `graphify-out/` (gitignored). See `.cursor/skills/graphify/SKILL.md`.
 
@@ -42,8 +46,7 @@ Greenfield flow: `/spec` → `/plan` → `/build` → `/review` → `/ship`. Opt
 
 **RTK (optional):** compresses verbose CLI output. Install with `./scripts/install-rtk.sh` (see `RTK_VERSION`), then restart Cursor. Bypass with `RTK_DISABLED=1`. Telemetry is opt-in only. Verify the correct binary with `rtk gain`.
 
-Pinned agent-skills version: see `AGENT_SKILLS_VERSION`.
-Pinned ponytail version: see `PONYTAIL_VERSION`.
+Pinned skills versions: see `SKILLS_LOCK.json` (legacy: `AGENT_SKILLS_VERSION`, `PONYTAIL_VERSION`).
 
 ## Requirements
 

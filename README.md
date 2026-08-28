@@ -5,7 +5,7 @@ A cookiecutter template for creating Python projects optimized for Cursor IDE wi
 ## Features
 
 - **Python-focused**: Modern Python project structure with type hints
-- **Cursor IDE optimized**: Project rules, agent skills (addyosmani/agent-skills + RTK + agentic patterns + graphify + ponytail), lifecycle slash commands, and optional RTK token compression
+- **Cursor IDE optimized**: Multi-upstream agent skills (addyosmani, superpowers, mattpocock, anthropic, taste, UI/UX, karpathy, i-have-adhd, caveman) + RTK + graphify + ponytail; `/update-skills` refresh command
 - **Best practices**: Pre-configured with modern tooling (Black, Ruff, MyPy, Pytest)
 - **Flexible environments**: Choose Poetry, uv, pip, or pip-tools for dependency management
 - **CI/CD ready**: GitHub Actions workflows included
@@ -53,19 +53,25 @@ You'll be prompted for:
 │   ├── pre_gen_project.sh
 │   └── post_gen_project.sh
 ├── scripts/
-│   ├── sync-agent-skills.sh   # Re-vendor addyosmani/agent-skills
-│   └── sync-ponytail.sh       # Re-vendor DietrichGebert/ponytail
+│   ├── skills-manifest.json   # Upstream allowlist and pins
+│   ├── sync_skills.py         # Core sync engine
+│   ├── sync-skills.sh         # Re-vendor all skills into template
+│   ├── sync-agent-skills.sh   # Wrapper: addyosmani only
+│   └── sync-ponytail.sh       # Wrapper: ponytail only
 └── {{cookiecutter.project_slug}}/
     ├── .cursor/
-    │   ├── rules/             # Thin .mdc policies (incl. agent-skills router + graphify + ponytail)
-    │   ├── skills/            # 24 upstream + RTK + agentic-patterns + graphify + ponytail (6)
-    │   ├── commands/          # /spec /plan /build /test /review /ponytail* /…
-    │   ├── agents/            # Optional review personas
-    │   ├── hooks.json         # Project-local RTK preToolUse hook
+    │   ├── rules/             # Router, ponytail, karpathy, i-have-adhd, graphify
+    │   ├── skills/            # ~78 vendored + local RTK/agentic/graphify
+    │   ├── commands/          # Lifecycle, brainstorm, grill, caveman, update-skills, ponytail*
+    │   ├── agents/
+    │   ├── hooks.json
     │   └── hooks/
-    ├── references/            # Agent-skills checklists
-    ├── AGENT_SKILLS_VERSION   # Pinned upstream ref/sha
-    ├── PONYTAIL_VERSION       # Pinned ponytail ref/sha
+    ├── references/            # Checklists + skills catalog/licenses
+    ├── SKILLS_LOCK.json       # Unified upstream pin lockfile
+    ├── scripts/
+    │   ├── skills-manifest.json
+    │   ├── sync_skills.py
+    │   └── update-skills.sh   # Generated-project refresh
     ├── RTK_VERSION
     ├── scripts/install-rtk.sh
     ├── scripts/install-graphify.sh
@@ -97,33 +103,28 @@ You'll be prompted for:
 
 ### Cursor IDE Integration
 
-- **Rules** (`.cursor/rules/*.mdc`): Short stack policies + always-on `agent-skills.mdc` router and `ponytail.mdc` (YAGNI/minimal code). Full workflows live in skills, not rules.
-- **Skills** (`.cursor/skills/`): Vendored [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) (pin in `AGENT_SKILLS_VERSION`) plus:
-  - `rtk-token-optimization` — when/how to use [RTK](https://github.com/rtk-ai/rtk)
-  - `awesome-agentic-patterns` — **live-fetch** latest patterns from [agentic-patterns.com/llms.txt](https://agentic-patterns.com/llms.txt) when building agentic apps
-  - `ponytail*` (6 skills) — vendored [Ponytail](https://github.com/DietrichGebert/ponytail) minimal-implementation mode (pin in `PONYTAIL_VERSION`)
-- **Commands** (`.cursor/commands/`): `/spec` `/plan` `/build` `/test` `/review` `/code-simplify` `/ship` `/webperf` and `/ponytail*` review/audit helpers
-- **References** (`references/`): Definition of done, testing/security/performance checklists
-- **RTK hook** (`.cursor/hooks.json`): Fail-open Shell rewrite; install binary via `scripts/install-rtk.sh` (never silent download in post-gen)
-- `.cursor/settings.json` and `.vscode/`: editor configuration
+- **Rules** (`.cursor/rules/*.mdc`): Router, ponytail (YAGNI), karpathy (think first), i-have-adhd (action-first output), graphify.
+- **Skills** (`.cursor/skills/`): Curated bundle from [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), [superpowers](https://github.com/obra/superpowers), [mattpocock/skills](https://github.com/mattpocock/skills), [anthropics/skills](https://github.com/anthropics/skills), [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills), [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [taste-skill](https://github.com/leonxlnx/taste-skill), [caveman](https://github.com/JuliusBrussee/caveman), plus local RTK/agentic-patterns/graphify and [ponytail](https://github.com/DietrichGebert/ponytail).
+- **Commands**: lifecycle (`/spec` … `/ship`), `/brainstorm`, `/grill-with-docs`, `/caveman`, `/update-skills`, `/ponytail*`
+- **Lock file**: `SKILLS_LOCK.json` records pinned SHAs for every upstream source.
 
-#### Re-sync agent-skills
+#### Re-sync all skills (template maintainers)
 
 ```bash
-./scripts/sync-agent-skills.sh          # default pin 0.6.4
-./scripts/sync-agent-skills.sh 0.6.4    # explicit tag
+./scripts/sync-skills.sh                    # all sources per skills-manifest.json
+./scripts/sync-skills.sh --source superpowers
 ```
 
-Local skills (`rtk-token-optimization`, `awesome-agentic-patterns`, `ponytail*`) are preserved across sync.
-
-#### Re-sync ponytail
+#### Re-sync single sources (legacy wrappers)
 
 ```bash
-./scripts/sync-ponytail.sh          # default pin v4.8.4
-./scripts/sync-ponytail.sh v4.8.4   # explicit tag
+./scripts/sync-agent-skills.sh   # addyosmani only
+./scripts/sync-ponytail.sh       # ponytail only
 ```
 
-Copies `.cursor/rules/ponytail.mdc`, six ponytail skills, and adapted `/ponytail*` slash commands into the template.
+Generated projects refresh with `./scripts/update-skills.sh` or `/update-skills`.
+
+Local skills (`rtk-token-optimization`, `awesome-agentic-patterns`, `graphify`) are preserved across sync.
 
 `cookiecutter.json` sets `_copy_without_render` for `.cursor/skills`, `.cursor/agents`, and `references` so vendored Markdown with `{{ }}` examples is copied verbatim.
 

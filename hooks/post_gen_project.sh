@@ -101,14 +101,27 @@ if [ -f "scripts/install-rtk.sh" ]; then
     chmod +x scripts/install-rtk.sh
 fi
 
+if [ -f "scripts/update-skills.sh" ]; then
+    chmod +x scripts/update-skills.sh
+fi
+if [ -f "scripts/sync_skills.py" ]; then
+    chmod +x scripts/sync_skills.py
+fi
+
 echo ""
 echo "Cursor agent tooling:"
-if [ -f "AGENT_SKILLS_VERSION" ]; then
+if [ -f "SKILLS_LOCK.json" ]; then
+    echo "  - Multi-upstream agent skills vendored (see SKILLS_LOCK.json)"
+elif [ -f "AGENT_SKILLS_VERSION" ]; then
     echo "  - Agent skills vendored (see AGENT_SKILLS_VERSION)"
 fi
 echo "  - Lifecycle commands: /spec /plan /build /test /review /code-simplify /ship /webperf"
-if [ -f "PONYTAIL_VERSION" ]; then
-    echo "  - Ponytail YAGNI mode: always-on (.cursor/rules/ponytail.mdc); /ponytail* commands (see PONYTAIL_VERSION)"
+echo "  - Also: /brainstorm /grill-with-docs /caveman /update-skills"
+if [ -f ".cursor/rules/karpathy-guidelines.mdc" ]; then
+    echo "  - Karpathy + i-have-adhd output rules: always-on"
+fi
+if [ -f "PONYTAIL_VERSION" ] || [ -f "SKILLS_LOCK.json" ]; then
+    echo "  - Ponytail YAGNI mode: always-on (.cursor/rules/ponytail.mdc); /ponytail* commands"
 fi
 echo "  - Agentic patterns: live fetch via .cursor/skills/awesome-agentic-patterns (agentic-patterns.com/llms.txt)"
 if command -v rtk >/dev/null 2>&1 && rtk gain >/dev/null 2>&1; then

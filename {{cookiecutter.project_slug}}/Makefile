@@ -1,4 +1,4 @@
-.PHONY: help install install-dev test lint format type-check clean run docker-build docker-up docker-down graph-install graph graph-update graph-query
+.PHONY: help install install-dev test lint format type-check clean run docker-build docker-up docker-down graph-install graph graph-update graph-query update-skills
 
 # Variables
 PYTHON := python3
@@ -145,4 +145,7 @@ graph-query: ## Query graph: make graph-query QUERY="How does X work?"
 	@test -n "$(QUERY)" || { echo 'Usage: make graph-query QUERY="your question"'; exit 1; }
 	@test -f graphify-out/graph.json || { echo "Run make graph first"; exit 1; }
 	graphify query "$(QUERY)"
+
+update-skills: ## Re-vendor agent skills from upstream (see scripts/skills-manifest.json)
+	@./scripts/update-skills.sh
 
