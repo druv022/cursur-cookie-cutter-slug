@@ -23,13 +23,21 @@ A cookiecutter template for creating Python projects optimized for Cursor IDE wi
 ### Generate a New Project
 
 ```bash
-cookiecutter /path/to/this/template
+./generate.sh
 ```
 
-Or use it directly from a directory:
+Or from another directory:
 
 ```bash
-cookiecutter .
+/path/to/this/template/generate.sh -o ~/projects
+```
+
+`generate.sh` passes `--overwrite-if-exists` so re-running against an existing project **updates template files** instead of failing with `directory already exists`. When a replay file exists for the same `project_slug`, it also passes `--replay` to reuse your last answers.
+
+Raw cookiecutter still works; add `-f` manually to update an existing project:
+
+```bash
+cookiecutter /path/to/this/template -f --replay
 ```
 
 You'll be prompted for:
@@ -217,11 +225,14 @@ Use `{{ cookiecutter.variable_name }}` syntax in template files. Variables are d
 **Issue**: Post-generation hook fails with "directory not found"
 - **Solution**: Remove any `cd` commands from `post_gen_project.sh` - cookiecutter already runs hooks from the project directory
 
+**Issue**: `Error: "my_project" directory already exists`
+- **Solution**: Use `./generate.sh` (auto update mode) or `cookiecutter . -f --replay` to refresh template files in the existing project. Review `git diff` before committing. Generated projects can also run `./scripts/update-from-template.sh` with `COOKIECUTTER_TEMPLATE` set.
+
 ## Usage Example
 
 ```bash
-# Generate a new project
-cookiecutter .
+# Generate a new project (or update an existing one with the same slug)
+./generate.sh
 
 # Follow the prompts:
 # project_name [My Awesome Project]: My Project

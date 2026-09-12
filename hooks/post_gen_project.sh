@@ -104,6 +104,9 @@ fi
 if [ -f "scripts/update-skills.sh" ]; then
     chmod +x scripts/update-skills.sh
 fi
+if [ -f "scripts/update-from-template.sh" ]; then
+    chmod +x scripts/update-from-template.sh
+fi
 if [ -f "scripts/sync_skills.py" ]; then
     chmod +x scripts/sync_skills.py
 fi
@@ -134,7 +137,7 @@ fi
 # Display next steps
 echo ""
 echo "=========================================="
-echo "Project {{ cookiecutter.project_name }} created successfully!"
+echo "Project {{ cookiecutter.project_name }} is ready!"
 echo "=========================================="
 echo ""
 echo "Next steps:"

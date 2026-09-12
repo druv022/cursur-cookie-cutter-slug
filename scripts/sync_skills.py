@@ -39,7 +39,7 @@ def clone_repo(repo: str, ref: str, dest: Path) -> tuple[str, str]:
 
 
 def escape_cookiecutter_braces(text: str) -> str:
-    return text.replace("{{", "{ {").replace("}}", "} }")
+    return text.replace("{{ '{{' }}", "{ {").replace("{{ '}}' }}", "} }")
 
 
 def adapt_claude_command(content: str) -> str:
@@ -67,7 +67,7 @@ def toml_to_cursor_cmd(toml_file: Path, out_file: Path, skill_name: str) -> None
     prompt_match = re.search(r'^prompt\s*=\s*"([^"]*)"', text, re.M)
     description = desc_match.group(1) if desc_match else ""
     prompt = prompt_match.group(1) if prompt_match else ""
-    prompt = prompt.replace("{{args}}", "the level the user provided (lite, full, ultra, or off)")
+    prompt = prompt.replace("{{ '{{args}}' }}", "the level the user provided (lite, full, ultra, or off)")
     body = (
         f"---\ndescription: {description}\n---\n\n"
         f"Read and follow `.cursor/skills/{skill_name}/SKILL.md`.\n\n"
