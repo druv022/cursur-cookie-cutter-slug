@@ -112,7 +112,7 @@ You'll be prompted for:
 ### Cursor IDE Integration
 
 - **Rules** (`.cursor/rules/*.mdc`): Router, ponytail (YAGNI), karpathy (think first), i-have-adhd (action-first output), graphify.
-- **Skills** (`.cursor/skills/`): Curated bundle from [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), [superpowers](https://github.com/obra/superpowers), [mattpocock/skills](https://github.com/mattpocock/skills), [anthropics/skills](https://github.com/anthropics/skills), [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills), [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [taste-skill](https://github.com/leonxlnx/taste-skill), [caveman](https://github.com/JuliusBrussee/caveman), plus local RTK/agentic-patterns/graphify and [ponytail](https://github.com/DietrichGebert/ponytail).
+- **Skills** (`.cursor/skills/`): Curated bundle from [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), [superpowers](https://github.com/obra/superpowers), [mattpocock/skills](https://github.com/mattpocock/skills), [anthropics/skills](https://github.com/anthropics/skills), [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills), [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [taste-skill](https://github.com/leonxlnx/taste-skill), [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), [i-have-adhd](https://github.com/ayghri/i-have-adhd), [caveman](https://github.com/JuliusBrussee/caveman), plus local RTK/agentic-patterns/graphify and [ponytail](https://github.com/DietrichGebert/ponytail).
 - **Commands**: lifecycle (`/spec` … `/ship`), `/brainstorm`, `/grill-with-docs`, `/caveman`, `/update-skills`, `/ponytail*`
 - **Lock file**: `SKILLS_LOCK.json` records pinned SHAs for every upstream source.
 
@@ -270,5 +270,22 @@ Contributions to improve this template are welcome! Please:
 
 - Built with [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
 - Optimized for [Cursor IDE](https://cursor.sh/)
-- Follows Python best practices and modern tooling standards
+
+Open-source upstreams vendored or used by this template:
+
+- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
+- [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
+- [obra/superpowers](https://github.com/obra/superpowers)
+- [anthropics/skills](https://github.com/anthropics/skills)
+- [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+- [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+- [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill)
+- [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+- [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)
+- [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
+- [rtk-ai/rtk](https://github.com/rtk-ai/rtk)
+- [nibzard/awesome-agentic-patterns](https://github.com/nibzard/awesome-agentic-patterns)
+
+Not all of these are MIT. See [`{{cookiecutter.project_slug}}/references/skills-licenses.md`]({{cookiecutter.project_slug}}/references/skills-licenses.md) for per-source license details.
 

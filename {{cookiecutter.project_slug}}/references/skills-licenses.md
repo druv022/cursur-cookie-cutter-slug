@@ -14,6 +14,13 @@
 | [i-have-adhd](https://github.com/ayghri/i-have-adhd.git) | MIT | MIT |
 | [caveman](https://github.com/JuliusBrussee/caveman.git) | MIT | MIT |
 
+## Related tools (not vendored via skills-manifest)
+
+| Source | License | Notes |
+|--------|---------|-------|
+| [rtk-ai/rtk](https://github.com/rtk-ai/rtk) | Apache-2.0 | Optional CLI; installed via `scripts/install-rtk.sh` |
+| [nibzard/awesome-agentic-patterns](https://github.com/nibzard/awesome-agentic-patterns) | Apache-2.0 | Fetched at runtime by the local `awesome-agentic-patterns` skill |
+
 ## Not vendored
 
 Anthropic document skills (`docx`, `pdf`, `pptx`, `xlsx`) are source-available only and are excluded from this template.

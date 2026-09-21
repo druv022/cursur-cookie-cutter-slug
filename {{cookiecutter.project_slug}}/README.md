@@ -306,3 +306,21 @@ This project is licensed under the {{ cookiecutter.license }} License - see the 
 - Built with [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
 - Optimized for [Cursor IDE](https://cursor.sh/)
 
+Open-source upstreams vendored or used by this project:
+
+- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
+- [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
+- [obra/superpowers](https://github.com/obra/superpowers)
+- [anthropics/skills](https://github.com/anthropics/skills)
+- [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+- [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+- [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill)
+- [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+- [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)
+- [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
+- [rtk-ai/rtk](https://github.com/rtk-ai/rtk)
+- [nibzard/awesome-agentic-patterns](https://github.com/nibzard/awesome-agentic-patterns)
+
+Not all of these are MIT. See [references/skills-licenses.md](references/skills-licenses.md) for per-source license details.
+
